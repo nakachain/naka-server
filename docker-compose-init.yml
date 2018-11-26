@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  naka-testnet-node1:
+    image: dwalintukan/go-naka
+      container_name: naka-testnet-node1
+      volumes:
+          - ~/.naka/node1:/root/.ethereum/
+          - ./setup/genesis.json:/root/genesis.json:ro
+      command: --identity "naka-testnet-node1" init /root/genesis.json
+
+  naka-testnet-node2:
+    image: dwalintukan/go-naka
+      container_name: naka-testnet-node2
+      volumes:
+          - ~/.naka/node2:/root/.ethereum/
+          - ./setup/genesis.json:/root/genesis.json:ro
+      command: --identity "naka-testnet-node2" init /root/genesis.json
