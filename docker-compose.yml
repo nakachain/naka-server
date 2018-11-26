@@ -16,6 +16,8 @@ services:
     command: bootnode -nodekey "/root/.naka/boot.key" -verbosity 9
 
   naka-testnet-node1:
+    depends_on:
+      - bootnode
     container_name: naka-testnet-node1
     image: nakachain/go-naka
     volumes:
@@ -49,6 +51,8 @@ services:
              --password "/root/.naka/password.txt"
 
   naka-testnet-node2:
+    depends_on:
+      - bootnode
     container_name: naka-testnet-node2
     image: nakachain/go-naka
     volumes:
