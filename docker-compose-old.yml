@@ -1,0 +1,89 @@
+version: '3.7'
+
+services:
+  # bootnode:
+  #   hostname: go-naka-bootnode
+  #   container_name: go-naka-bootnode
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/bootnode/Dockerfile
+  #   networks:
+  #     chainnet: 
+  #       ipv4_address: 172.25.0.101
+  #   ports:
+  #     - 30301:30301/udp
+  #   logging:
+  #     driver: json-file
+  #     options:
+  #       max-size: "1m"
+  #       max-file: "10"
+  #   volumes:
+  #     - ~/.naka:~/.naka
+
+  testnet-node1:
+    hostname: naka-testnet-node1
+    container_name: naka-testnet-node1
+    # depends_on:
+    #   - bootnode
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        PRIVATE_KEY: 60fbbf711c6fcdc50e39a98116a2240330c393a5f3df2f05b72dcbe0857bdc3b # for testing
+        PASSWORD: naka # for testing
+    environment:
+      - ADDRESS=0x8102c0ecece895b8fefbddf42b95b7a20925b0c8
+      - BOOTNODE_ID=be18154ff3753dbb46d59efa460d708a8eec1b547a2983b82ab36a50716e547ed0ca56f97ef625e469b2b752f3db07e1d85952bf87ba328f947a88613ffce755
+      - BOOTNODE_IP=172.25.0.101
+    networks:
+      chainnet: 
+        ipv4_address: 172.25.0.102
+    ports:
+      - 8545:8545
+    volumes:
+      - ~/.naka/node1:~/.naka
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "10"
+    
+  # testnet-node2:
+  #   hostname: naka-testnet-node2
+  #   container_name: naka-testnet-node2
+  #   # depends_on:
+  #   #   - bootnode
+  #   build:
+  #     context: .
+  #     dockerfile: ./Dockerfile
+  #     args:
+  #       PRIVATE_KEY: c1678e3589a49ed370d0764aafe20d061cffb5d6ec9ff2676285135f5bc96d4d # for testing
+  #       PASSWORD: naka # for testing
+  #   environment:
+  #     - ADDRESS=0x60afa8f21f3dba79f3dc9708bc890056c286e7a4
+  #     - BOOTNODE_ID=be18154ff3753dbb46d59efa460d708a8eec1b547a2983b82ab36a50716e547ed0ca56f97ef625e469b2b752f3db07e1d85952bf87ba328f947a88613ffce755
+  #     - BOOTNODE_IP=172.25.0.101
+  #   networks:
+  #     chainnet: 
+  #       ipv4_address: 172.25.0.103
+  #   ports:
+  #     - 8546:8545
+  #     - 33335:33335
+  #   volumes:
+  #     - ~/.naka/node2:~/.naka
+  #   logging:
+  #     driver: json-file
+  #     options:
+  #       max-size: "1m"
+  #       max-file: "10"
+
+networks:
+  chainnet:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.25.0.0/24
+
+# volumes:
+#   node1-testnet-data:
+#   node2-testnet-data:
