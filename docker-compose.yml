@@ -2,8 +2,8 @@ version: '3.7'
 
 services:
   naka-testnet-node1:
-    image: dwalintukan/go-naka
     container_name: naka-testnet-node1
+    image: nakachain/go-naka
     volumes:
       - ~/.naka/node1:/root/.ethereum/
       - ./setup/genesis.json:/root/.naka/genesis.json:ro
@@ -16,8 +16,8 @@ services:
     command: --identity "naka-testnet-node1" --syncmode "full" --networkid "25" --targetgaslimit "4700000" --rpc --rpcaddr "0.0.0.0" --rpccorsdomain "*" --ws --wsaddr "0.0.0.0"  --bootnodes "enode://be18154ff3753dbb46d59efa460d708a8eec1b547a2983b82ab36a50716e547ed0ca56f97ef625e469b2b752f3db07e1d85952bf87ba328f947a88613ffce755@127.0.0.1:30301" --verbosity=4 --unlock "0x8102c0ecece895b8fefbddf42b95b7a20925b0c8" --password "/root/.naka/password.txt" --mine --etherbase "0x8102c0ecece895b8fefbddf42b95b7a20925b0c8"
 
   naka-testnet-node2:
-    image: dwalintukan/go-naka
     container_name: naka-testnet-node2
+    image: nakachain/go-naka
     volumes:
       - ~/.naka/node2:/root/.ethereum/
       - ./setup/genesis.json:/root/.naka/genesis.json:ro

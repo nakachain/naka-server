@@ -3,7 +3,7 @@ version: '3.7'
 services:
   naka-testnet-node1:
     container_name: naka-testnet-node1
-    image: dwalintukan/go-naka
+    image: nakachain/go-naka
     volumes:
       - ~/.naka/node1:/root/.ethereum/
       - ./setup/genesis.json:/root/.naka/genesis.json:ro
