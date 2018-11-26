@@ -32,7 +32,7 @@ services:
       - 30303:30303/udp
     security_opt:
       - apparmor:unconfined
-    command: --identity "naka-testnet-node1" --syncmode "full" --networkid "25" --targetgaslimit "4700000" --rpc --rpcaddr "0.0.0.0" --rpccorsdomain "*" --nat=none  --bootnodes "enode://be18154ff3753dbb46d59efa460d708a8eec1b547a2983b82ab36a50716e547ed0ca56f97ef625e469b2b752f3db07e1d85952bf87ba328f947a88613ffce755@127.0.0.1:30301" --verbosity=4 --unlock "0x8102c0ecece895b8fefbddf42b95b7a20925b0c8" --password "/root/.naka/password.txt" --mine --etherbase "0x8102c0ecece895b8fefbddf42b95b7a20925b0c8"
+    command: --identity "naka-testnet-node1" --syncmode "full" --networkid "25" --targetgaslimit "4700000" --rpc --rpcaddr "0.0.0.0" --rpccorsdomain "*" --nat=none  --bootnodes "enode://be18154ff3753dbb46d59efa460d708a8eec1b547a2983b82ab36a50716e547ed0ca56f97ef625e469b2b752f3db07e1d85952bf87ba328f947a88613ffce755@0.0.0.0:30301" --verbosity=4 --unlock "0x8102c0ecece895b8fefbddf42b95b7a20925b0c8" --password "/root/.naka/password.txt" --mine --etherbase "0x8102c0ecece895b8fefbddf42b95b7a20925b0c8"
 
   naka-testnet-node2:
     container_name: naka-testnet-node2
@@ -51,7 +51,7 @@ services:
       - 30304:30303/udp
     security_opt:
       - apparmor:unconfined
-    command: --identity "naka-testnet-node2" --syncmode "full" --networkid "25" --targetgaslimit "4700000" --rpc --rpcaddr "0.0.0.0" --rpccorsdomain "*" --nat=none  --bootnodes "enode://be18154ff3753dbb46d59efa460d708a8eec1b547a2983b82ab36a50716e547ed0ca56f97ef625e469b2b752f3db07e1d85952bf87ba328f947a88613ffce755@127.0.0.1:30301" --verbosity=4 --unlock "0x60afa8f21f3dba79f3dc9708bc890056c286e7a4" --password "/root/.naka/password.txt" --mine --etherbase "0x60afa8f21f3dba79f3dc9708bc890056c286e7a4"
+    command: --identity "naka-testnet-node2" --syncmode "full" --networkid "25" --targetgaslimit "4700000" --rpc --rpcaddr "0.0.0.0" --rpccorsdomain "*" --nat=none  --bootnodes "enode://be18154ff3753dbb46d59efa460d708a8eec1b547a2983b82ab36a50716e547ed0ca56f97ef625e469b2b752f3db07e1d85952bf87ba328f947a88613ffce755@0.0.0.0:30301" --verbosity=4 --unlock "0x60afa8f21f3dba79f3dc9708bc890056c286e7a4" --password "/root/.naka/password.txt" --mine --etherbase "0x60afa8f21f3dba79f3dc9708bc890056c286e7a4"
 
 networks:
   chainnet:
