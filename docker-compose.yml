@@ -24,7 +24,7 @@ services:
       - ./setup/keystore:/root/.ethereum/keystore:rw
       - ./setup/password.txt:/root/.naka/password.txt:ro
     ports:
-      - 8545:8545
-      - 30303:30303
-      - 30303:30303/udp
+      - 8546:8545
+      - 30304:30303
+      - 30304:30303/udp
     command: --identity "naka-testnet-node2" --syncmode "full" --networkid "25" --targetgaslimit "4700000" --rpc --rpcaddr "0.0.0.0" --rpccorsdomain "*" --ws --wsaddr "0.0.0.0"  --bootnodes "enode://be18154ff3753dbb46d59efa460d708a8eec1b547a2983b82ab36a50716e547ed0ca56f97ef625e469b2b752f3db07e1d85952bf87ba328f947a88613ffce755@127.0.0.1:30301" --verbosity=4 --unlock "0x60afa8f21f3dba79f3dc9708bc890056c286e7a4" --password "/root/.naka/password.txt" --mine --etherbase "0x60afa8f21f3dba79f3dc9708bc890056c286e7a4"
