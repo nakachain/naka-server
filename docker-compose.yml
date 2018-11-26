@@ -2,18 +2,18 @@ version: '3.7'
 
 services:
   bootnode:
-    hostname: naka-bootnode
     container_name: naka-bootnode
-    build:
-      context: .
-      dockerfile: ./docker/bootnode/Dockerfile
+    image: nakachain/bootnode
+    volumes:
+      - ~/.naka/boot.key:/root/.naka/boot.key:ro
     networks:
       chainnet: 
         ipv4_address: 172.25.0.101
     ports:
       - 30301:30301/udp
-    volumes:
-      - ~/.naka/boot.key:/root/.naka/boot.key:ro
+    security_opt:
+      - apparmor:unconfined
+    command: --identity "naka-bootnode" -nodekey "/root/.naka/boot.key" -verbosity 9
 
   naka-testnet-node1:
     container_name: naka-testnet-node1
