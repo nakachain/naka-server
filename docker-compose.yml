@@ -13,7 +13,7 @@ services:
       - 30301:30301/udp
     security_opt:
       - apparmor:unconfined
-    command: bootnode -nodekey /root/.naka/boot.key -verbosity 9
+    command: -nodekey /root/.naka/boot.key -verbosity 9
 
   naka-testnet-node1:
     depends_on:
