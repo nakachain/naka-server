@@ -5,7 +5,7 @@ services:
     container_name: naka-bootnode
     image: nakachain/bootnode
     volumes:
-      - ~/.naka:/root/.naka:ro
+      - ~/.naka/boot.key:/root/.naka/boot.key:ro
     networks:
       chainnet: 
         ipv4_address: 172.25.0.101
