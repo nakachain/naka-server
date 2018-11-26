@@ -11,7 +11,7 @@ services:
 
   naka-testnet-node2:
     container_name: naka-testnet-node2
-    image: dwalintukan/go-naka
+    image: nakachain/go-naka
     volumes:
       - ~/.naka/node2:/root/.ethereum/
       - ./setup/genesis.json:/root/.naka/genesis.json:ro
