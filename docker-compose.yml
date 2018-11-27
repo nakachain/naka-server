@@ -2,8 +2,8 @@ version: '3.7'
 
 services:
   bootnode:
-    hostname: go-naka-bootnode
-    container_name: go-naka-bootnode
+    hostname: bootnode
+    container_name: bootnode
     build:
       context: .
       dockerfile: ./docker/bootnode/Dockerfile
@@ -16,8 +16,8 @@ services:
       - ./setup/boot.key:~/.naka/boot.key:ro
 
   testnet-node1:
-    hostname: naka-testnet-node1
-    container_name: naka-testnet-node1
+    hostname: testnet-node1
+    container_name: testnet-node1
     depends_on:
       - bootnode
     build:
@@ -35,8 +35,10 @@ services:
         ipv4_address: 172.25.0.102
     ports:
       - 8545:8545
+      - 30303:30303
     volumes:
       - ~/.naka/node1:~/.naka:rw
+      - ./setup/genesis.json:~/.naka/genesis.json:ro
     logging:
       driver: json-file
       options:
@@ -44,8 +46,8 @@ services:
         max-file: "10"
     
   testnet-node2:
-    hostname: naka-testnet-node2
-    container_name: naka-testnet-node2
+    hostname: testnet-node2
+    container_name: testnet-node2
     depends_on:
       - bootnode
     build:
@@ -63,8 +65,10 @@ services:
         ipv4_address: 172.25.0.103
     ports:
       - 8546:8545
+      - 30304:30303
     volumes:
-      - ~/.naka/node2:~/.naka
+      - ~/.naka/node2:~/.naka:rw
+      - ./setup/genesis.json:~/.naka/genesis.json:ro
     logging:
       driver: json-file
       options:
