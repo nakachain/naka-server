@@ -12,13 +12,8 @@ services:
         ipv4_address: 172.25.0.101
     ports:
       - 30301:30301/udp
-    logging:
-      driver: json-file
-      options:
-        max-size: "1m"
-        max-file: "10"
     volumes:
-      - ~/.naka:~/.naka
+      - ./setup/boot.key:~/.naka/boot.key:ro
 
   testnet-node1:
     hostname: naka-testnet-node1
@@ -41,7 +36,7 @@ services:
     ports:
       - 8545:8545
     volumes:
-      - ~/.naka/node1:~/.naka
+      - ~/.naka/node1:~/.naka:rw
     logging:
       driver: json-file
       options:
