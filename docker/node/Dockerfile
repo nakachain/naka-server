@@ -1,27 +1,25 @@
-FROM alpine:latest
+FROM nakachain/go-naka
 
-RUN adduser -u 1000 -D server
-USER server
-RUN id
+# RUN adduser -u 1000 -D server
+# USER server
+# RUN id
 
-COPY --chown=1000:1000 ./build/bin/geth $HOME/geth
-COPY --chown=1000:1000 ./genesis.json $HOME/genesis.json
-RUN ls -lah /
-
-RUN mkdir -p ~/.naka
-RUN ls -lah /
-RUN ./geth --datadir "~/.naka" init ~/genesis.json
+# Run init genesis script if needed
+COPY ./setup/genesis.json /root/.naka/
+COPY ./setup/init-genesis.sh /usr/local/bin
+COPY ./setup/start-node.sh /usr/local/bin
+RUN ls -lah /root
+RUN ls -lah /root/.naka
+RUN init-genesis.sh
 
 # NOT SAFE FOR PROD! change method of adding accts later.
 ARG PRIVATE_KEY
 ARG PASSWORD
-RUN echo $PRIVATE_KEY > ~/.privatekey
-RUN echo $PASSWORD > ~/.accountpassword
-RUN ./geth account import --password ~/.accountpassword ~/.privatekey
+RUN echo $PRIVATE_KEY > /root/.naka/.privatekey
+RUN echo $PASSWORD > /root/.naka/.accountpw
+RUN geth --datadir /root/.naka account import --password /root/.naka/.accountpw /root/.naka/.privatekey
 
-ENV ADDRESS=""
-ENV BOOTNODE_ID=""
-ENV BOOTNODE_IP=""
-CMD exec ./geth --datadir "~/.naka" --syncmode "full" --networkid "25" --targetgaslimit "4700000" --rpc --rpcaddr "0.0.0.0" --rpccorsdomain "*" --bootnodes "enode://$BOOTNODE_ID@$BOOTNODE_IP:30301" --verbosity=4 --unlock $ADDRESS --password "~/.accountpassword" --mine --etherbase $ADDRESS
+# Run geth script
+ENTRYPOINT ["start-node.sh"]
 
 EXPOSE 8545 30303

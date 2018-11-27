@@ -1,10 +1,13 @@
-FROM alpine:latest
+FROM nakachain/bootnode
 
-RUN adduser -u 1000 -D server
-USER server
+# RUN adduser -u 1000 -D server
+# USER server
 
-COPY --chown=1000:1000 ./build/bin/bootnode /usr/local/bin/
+# Copy bootkey
+RUN mkdir /root/.naka
+COPY ./setup/boot.key /root/.naka
 
-CMD exec /usr/local/bin/bootnode -nodekey "~/.naka/boot.key" -verbosity 9
+# Start bootnode
+CMD ["-nodekey", "/root/.naka/boot.key", "-verbosity", "9"]
 
-EXPOSE 30301/udp 30303/udp
+EXPOSE 30301/udp
