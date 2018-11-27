@@ -37,7 +37,7 @@ services:
       - 8545:8545
       - 30303:30303
     volumes:
-      - ~/.naka/node1:~/.naka:rw
+      - node1-testnet-data:~/.naka:rw
       - ./setup/genesis.json:~/.naka/genesis.json:ro
     logging:
       driver: json-file
@@ -67,7 +67,7 @@ services:
       - 8546:8545
       - 30304:30303
     volumes:
-      - ~/.naka/node2:~/.naka:rw
+      - node2-testnet-data:~/.naka:rw
       - ./setup/genesis.json:~/.naka/genesis.json:ro
     logging:
       driver: json-file
