@@ -8,8 +8,6 @@ FROM nakachain/go-naka
 COPY ./setup/genesis.json /root/.naka/
 COPY ./setup/init-genesis.sh /usr/local/bin
 COPY ./setup/start-node.sh /usr/local/bin
-RUN ls -lah /root
-RUN ls -lah /root/.naka
 RUN init-genesis.sh
 
 # NOT SAFE FOR PROD! change method of adding accts later.
