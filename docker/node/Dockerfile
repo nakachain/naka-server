@@ -19,14 +19,7 @@ RUN echo $PRIVATE_KEY > /root/.naka/.privatekey
 RUN echo $PASSWORD > /root/.naka/.accountpw
 RUN geth --datadir /root/.naka account import --password /root/.naka/.accountpw /root/.naka/.privatekey
 
-# Start geth
-# ARG ADDRESS
-# ARG BOOTNODE_ID
-# ARG BOOTNODE_IP
+# Run geth script
 ENTRYPOINT ["start-node.sh"]
-# ENTRYPOINT ["/bin/sh", "-c", "exec /root/.naka/start-node.sh"]
-# ENTRYPOINT ["/bin/sh", "-c", "exec /usr/local/bin/geth --datadir=/root/.naka --syncmode=full --networkid=25 --nat=none --targetgaslimit 4700000 --rpc --rpcaddr 0.0.0.0 --rpccorsdomain * --verbosity 4 --mine --bootnodes enode://$BOOTNODE_ID@$BOOTNODE_IP:30301 --etherbase $ADDRESS --unlock $ADDRESS --password /root/.naka/.accountpw"]
-# ENTRYPOINT ["geth"]
-# CMD --datadir /root/.naka --syncmode full --networkid 25 --nat=none --targetgaslimit 4700000 --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --verbosity 4 --mine --bootnodes "enode://$BOOTNODE_ID@$BOOTNODE_IP:30301" --etherbase "$ADDRESS" --unlock "$ADDRESS" --password /root/.naka/.accountpw
 
 EXPOSE 8545 30303
