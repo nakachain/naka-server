@@ -28,6 +28,6 @@ RUN geth account import --password /root/.naka/.accountpassword /root/.naka/.pri
 ENV ADDRESS=""
 ENV BOOTNODE_ID=""
 ENV BOOTNODE_IP=""
-RUN geth --datadir /root/.naka --syncmode full --networkid 25 --targetgaslimit 4700000 --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --verbosity 4 --mine --bootnodes enode://"echo $BOOTNODE_ID"}@"echo $BOOTNODE_IP"}:30301 --etherbase "echo $ADDRESS" --unlock "echo $ADDRESS" --password /root/.naka/.accountpassword
+RUN geth --datadir /root/.naka --syncmode full --networkid 25 --targetgaslimit 4700000 --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --verbosity 4 --mine --bootnodes "enode://echo $BOOTNODE_ID@echo $BOOTNODE_IP}:30301" --etherbase "echo $ADDRESS" --unlock "echo $ADDRESS" --password /root/.naka/.accountpassword
 
 EXPOSE 8545 30303
