@@ -22,10 +22,9 @@ RUN /root/.naka/init-genesis.sh
 ARG PRIVATE_KEY
 ARG PASSWORD
 RUN echo $PRIVATE_KEY > /root/.naka/.privatekey
-RUN cat /root/.naka/.privatekey
 RUN echo $PASSWORD > /root/.naka/.accountpw
-RUN cat /root/.naka/.accountpw
 RUN geth account import --password /root/.naka/.accountpw /root/.naka/.privatekey
+RUN ls -lah /root/.naka/keystore
 
 ARG ADDRESS
 ARG BOOTNODE_ID
