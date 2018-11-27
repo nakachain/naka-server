@@ -12,6 +12,9 @@ FROM nakachain/go-naka
 # RUN ls -lah /
 # RUN geth --datadir ~/.naka init ~/.naka/genesis.json
 
+RUN ls -lah /root
+RUN ls -lah /root/.naka
+
 # NOT SAFE FOR PROD! change method of adding accts later.
 ARG PRIVATE_KEY
 ARG PASSWORD
