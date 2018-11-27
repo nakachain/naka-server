@@ -5,5 +5,6 @@ FROM nakachain/go-naka
 # RUN id
 
 # RUN mkdir ~/.naka && chown -R server:server ~/.naka
-RUN ls -lah
+RUN ls -lah /root
+RUN ls -lah /root/.naka
 RUN geth --datadir /root/.naka init /root/.naka/genesis.json
