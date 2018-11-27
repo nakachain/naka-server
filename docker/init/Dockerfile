@@ -1,8 +1,8 @@
 FROM nakachain/go-naka
 
-RUN adduser -u 1000 -D server
-USER server
-RUN id
+# RUN adduser -u 1000 -D server
+# USER server
+# RUN id
 
 RUN mkdir ~/.naka && chown -R server:server ~/.naka
 RUN ls -lah ~/.naka
