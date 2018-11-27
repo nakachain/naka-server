@@ -12,6 +12,9 @@ FROM nakachain/go-naka
 # RUN ls -lah /
 # RUN geth --datadir ~/.naka init ~/.naka/genesis.json
 
+COPY ./setup/init-genesis.sh /root/.naka
+RUN /root/.naka/init-genesis.sh
+
 RUN ls -lah /root
 RUN ls -lah /root/.naka
 
