@@ -9,4 +9,4 @@ COPY ./setup/genesis.json /root/.naka
 
 RUN ls -lah /root
 RUN ls -lah /root/.naka
-RUN geth --datadir /root/.naka init /root/.naka/genesis.json
+CMD exec geth --datadir /root/.naka init /root/.naka/genesis.json
