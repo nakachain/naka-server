@@ -4,19 +4,19 @@ services:
   testnet-node1:
     hostname: testnet-node1
     container_name: testnet-node1
-    volumes:
-      - ~/.naka/node1:~/.naka:rw
-      - ./setup/genesis.json:~/.naka/genesis.json:ro
     build:
       context: .
       dockerfile: ./docker/init/Dockerfile
+    volumes:
+      - ~/.naka/node1:~/.naka:rw
+      - ./setup/genesis.json:~/.naka/genesis.json
 
   testnet-node2:
     hostname: testnet-node2
     container_name: testnet-node2
-    volumes:
-      - ~/.naka/node2:~/.naka:rw
-      - ./setup/genesis.json:~/.naka/genesis.json:ro
     build:
       context: .
       dockerfile: ./docker/init/Dockerfile
+    volumes:
+      - ~/.naka/node2:~/.naka:rw
+      - ./setup/genesis.json:~/.naka/genesis.json
