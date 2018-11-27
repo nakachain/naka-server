@@ -9,7 +9,6 @@ services:
       dockerfile: ./docker/init/Dockerfile
     volumes:
       - node1-testnet-data:/root/.naka:rw
-      # - ./setup/genesis.json:/root/.naka/genesis.json:ro
 
   testnet-node2:
     hostname: testnet-node2
@@ -19,7 +18,6 @@ services:
       dockerfile: ./docker/init/Dockerfile
     volumes:
       - node2-testnet-data:/root/.naka:rw
-      # - ./setup/genesis.json:/root/.naka/genesis.json:ro
 
 volumes:
   node1-testnet-data:
