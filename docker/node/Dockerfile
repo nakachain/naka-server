@@ -5,12 +5,12 @@ FROM nakachain/go-naka
 # RUN id
 
 # Run init genesis script if needed
-COPY ./setup/init-genesis.sh /root/.naka/
 COPY ./setup/genesis.json /root/.naka/
-COPY ./setup/start-node.sh /root/.naka/
+COPY ./setup/init-genesis.sh /usr/local/bin
+COPY ./setup/start-node.sh /usr/local/bin
 RUN ls -lah /root
 RUN ls -lah /root/.naka
-RUN /root/.naka/init-genesis.sh
+RUN init-genesis.sh
 
 # NOT SAFE FOR PROD! change method of adding accts later.
 ARG PRIVATE_KEY
@@ -23,7 +23,8 @@ RUN geth --datadir /root/.naka account import --password /root/.naka/.accountpw 
 ARG ADDRESS
 ARG BOOTNODE_ID
 ARG BOOTNODE_IP
-ENTRYPOINT ["/bin/sh", "-c", "exec /root/.naka/start-node.sh"]
+ENTRYPOINT ["start-node.sh"]
+# ENTRYPOINT ["/bin/sh", "-c", "exec /root/.naka/start-node.sh"]
 # ENTRYPOINT ["/bin/sh", "-c", "exec /usr/local/bin/geth --datadir=/root/.naka --syncmode=full --networkid=25 --nat=none --targetgaslimit 4700000 --rpc --rpcaddr 0.0.0.0 --rpccorsdomain * --verbosity 4 --mine --bootnodes enode://$BOOTNODE_ID@$BOOTNODE_IP:30301 --etherbase $ADDRESS --unlock $ADDRESS --password /root/.naka/.accountpw"]
 # ENTRYPOINT ["geth"]
 # CMD --datadir /root/.naka --syncmode full --networkid 25 --nat=none --targetgaslimit 4700000 --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --verbosity 4 --mine --bootnodes "enode://$BOOTNODE_ID@$BOOTNODE_IP:30301" --etherbase "$ADDRESS" --unlock "$ADDRESS" --password /root/.naka/.accountpw
