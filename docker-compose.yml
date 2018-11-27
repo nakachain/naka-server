@@ -6,7 +6,7 @@ services:
     container_name: bootnode
     build:
       context: .
-      dockerfile: ./docker/bootnode/Dockerfile
+      dockerfile: ./bootnode/Dockerfile
     networks:
       chainnet: 
         ipv4_address: 172.25.0.101
@@ -20,7 +20,7 @@ services:
       - bootnode
     build:
       context: .
-      dockerfile: ./docker/node/Dockerfile
+      dockerfile: ./node/Dockerfile
       args:
         PRIVATE_KEY: "60fbbf711c6fcdc50e39a98116a2240330c393a5f3df2f05b72dcbe0857bdc3b" # ONLY FOR DEV
         PASSWORD: "naka" # ONLY FOR DEV
@@ -49,7 +49,7 @@ services:
       - bootnode
     build:
       context: .
-      dockerfile: ./docker/node/Dockerfile
+      dockerfile: ./node/Dockerfile
       args:
         PRIVATE_KEY: "c1678e3589a49ed370d0764aafe20d061cffb5d6ec9ff2676285135f5bc96d4d" # ONLY FOR DEV
         PASSWORD: "naka" # ONLY FOR DEV
