@@ -1,8 +1,8 @@
 FROM nakachain/go-naka
 
-RUN adduser -u 1000 -D server
-USER server
-RUN id
+# RUN adduser -u 1000 -D server
+# USER server
+# RUN id
 
 # COPY --chown=1000:1000 ./build/bin/geth $HOME/geth
 # COPY --chown=1000:1000 ./genesis.json $HOME/genesis.json
@@ -15,13 +15,13 @@ RUN id
 # NOT SAFE FOR PROD! change method of adding accts later.
 ARG PRIVATE_KEY
 ARG PASSWORD
-RUN echo $PRIVATE_KEY > ~/.privatekey
-RUN echo $PASSWORD > ~/.accountpassword
-RUN geth account import --password ~/.accountpassword ~/.privatekey
+RUN echo $PRIVATE_KEY > /root/.naka/.privatekey
+RUN echo $PASSWORD > /root/.naka/.accountpassword
+RUN geth account import --password /root/.naka/.accountpassword /root/.naka/.privatekey
 
 ENV ADDRESS=""
 ENV BOOTNODE_ID=""
 ENV BOOTNODE_IP=""
-CMD geth --datadir ~/.naka --syncmode "full" --networkid "25" --targetgaslimit "4700000" --rpc --rpcaddr "0.0.0.0" --rpccorsdomain "*" --bootnodes "enode://$BOOTNODE_ID@$BOOTNODE_IP:30301" --verbosity=4 --unlock $ADDRESS --password "~/.accountpassword" --mine --etherbase $ADDRESS
+CMD ["--datadir", "/root/.naka", "--syncmode", "full", "--networkid", "25", "--targetgaslimit", "4700000", "--rpc", "--rpcaddr", "0.0.0.0", "--rpccorsdomain", "*", "--verbosity", "4", "--mine", "--bootnodes", "enode://$BOOTNODE_ID@$BOOTNODE_IP:30301", "--unlock", "$ADDRESS", "--password", "/root/.naka/.accountpassword", "--etherbase", "$ADDRESS"]
 
 EXPOSE 8545 30303

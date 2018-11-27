@@ -12,8 +12,6 @@ services:
         ipv4_address: 172.25.0.101
     ports:
       - 30301:30301/udp
-    volumes:
-      - ./setup/boot.key:~/.naka/boot.key:ro
 
   testnet-node1:
     hostname: testnet-node1
@@ -37,8 +35,7 @@ services:
       - 8545:8545
       - 30303:30303
     volumes:
-      - node1-testnet-data:~/.naka:rw
-      - ./setup/genesis.json:~/.naka/genesis.json:ro
+      - node1-testnet-data:/root/.naka:rw
     logging:
       driver: json-file
       options:
@@ -67,8 +64,7 @@ services:
       - 8546:8545
       - 30304:30303
     volumes:
-      - node2-testnet-data:~/.naka:rw
-      - ./setup/genesis.json:~/.naka/genesis.json:ro
+      - node2-testnet-data:/root/.naka:rw
     logging:
       driver: json-file
       options:
