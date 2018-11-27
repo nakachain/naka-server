@@ -23,7 +23,7 @@ ARG PRIVATE_KEY
 ARG PASSWORD
 RUN echo $PRIVATE_KEY > /root/.naka/.privatekey
 RUN echo $PASSWORD > /root/.naka/.accountpw
-RUN geth account import --password /root/.naka/.accountpw /root/.naka/.privatekey
+RUN geth --datadir /root/.naka account import --password /root/.naka/.accountpw /root/.naka/.privatekey
 RUN ls -lah /root/.naka/keystore
 
 ARG ADDRESS
