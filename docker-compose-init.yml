@@ -8,8 +8,8 @@ services:
       context: .
       dockerfile: ./docker/init/Dockerfile
     volumes:
-      - ~/.naka/node1:~/.naka:rw
-      - ./setup/genesis.json:~/.naka/genesis.json
+      - ~/.naka/node1:/root/.naka:rw
+      - ./setup/genesis.json:/root/.naka/genesis.json:ro
 
   testnet-node2:
     hostname: testnet-node2
@@ -19,4 +19,4 @@ services:
       dockerfile: ./docker/init/Dockerfile
     volumes:
       - ~/.naka/node2:~/.naka:rw
-      - ./setup/genesis.json:~/.naka/genesis.json
+      - ./setup/genesis.json:/root/.naka/genesis.json:ro
