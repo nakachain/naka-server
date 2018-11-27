@@ -21,8 +21,10 @@ RUN /root/.naka/init-genesis.sh
 # NOT SAFE FOR PROD! change method of adding accts later.
 ARG PRIVATE_KEY
 ARG PASSWORD
-RUN "$PRIVATE_KEY" > /root/.naka/.privatekey
-RUN "$PASSWORD" > /root/.naka/.accountpw
+RUN echo $PRIVATE_KEY > /root/.naka/.privatekey
+RUN cat /root/.naka/.privatekey
+RUN echo $PASSWORD > /root/.naka/.accountpw
+RUN cat /root/.naka/.accountpw
 RUN geth account import --password /root/.naka/.accountpw /root/.naka/.privatekey
 
 ARG ADDRESS
