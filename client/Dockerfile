@@ -9,4 +9,4 @@ RUN init-genesis.sh
 # Run geth script
 ENTRYPOINT ["start-client.sh"]
 
-EXPOSE 8545 30303
+EXPOSE 8545 8546 30303
