@@ -11,7 +11,7 @@ services:
       chainnet: 
         ipv4_address: 172.25.0.101
     ports:
-      - 30301:30301/udp
+      - 30301:30301
 
   testnet-node1:
     hostname: testnet-node1

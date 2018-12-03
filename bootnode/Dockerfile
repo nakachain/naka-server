@@ -10,4 +10,4 @@ COPY ./setup/boot.key /root/.naka
 # Start bootnode
 CMD ["-nodekey", "/root/.naka/boot.key", "-verbosity", "9"]
 
-EXPOSE 30301/udp
+EXPOSE 30301
