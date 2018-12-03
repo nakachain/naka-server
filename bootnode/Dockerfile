@@ -1,4 +1,4 @@
-FROM nakachain/bootnode
+FROM nakachain/bootnode:1.1.0
 
 # RUN adduser -u 1000 -D server
 # USER server
