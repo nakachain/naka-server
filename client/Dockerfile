@@ -1,4 +1,4 @@
-FROM nakachain/go-naka:1.1.0
+FROM nakachain/go-naka:1.1.1
 
 # Run init genesis script if needed
 COPY ./setup/genesis.json /root/.naka/
