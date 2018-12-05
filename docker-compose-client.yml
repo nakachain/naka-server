@@ -12,6 +12,7 @@ services:
         BOOTNODE_IP: "52.194.161.36"
     ports:
       - 8545:8545
+      - 8546:8546
       - 30303:30303
     volumes:
       - testnet-client-data:/root/.naka:rw
