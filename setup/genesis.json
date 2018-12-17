@@ -10,7 +10,7 @@
     "nip2Block": 5,
     "nip17Block": 6,
     "clique": {
-      "period": 15,
+      "period": 5,
       "epoch": 30000
     }
   },
