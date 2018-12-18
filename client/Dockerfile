@@ -1,4 +1,6 @@
-FROM nakachain/go-naka:1.2.0
+ARG VERSION=latest
+FROM nakachain/go-naka:$VERSION
+RUN echo "Using nakachain/go-naka:${VERSION}"
 
 # Run init genesis script if needed
 COPY ./setup/genesis.json /root/.naka/

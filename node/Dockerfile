@@ -1,4 +1,6 @@
-FROM nakachain/go-naka:1.2.0
+ARG VERSION=latest
+FROM nakachain/go-naka:$VERSION
+RUN echo "Using nakachain/go-naka:${VERSION}"
 
 # RUN adduser -u 1000 -D server
 # USER server

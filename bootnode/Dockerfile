@@ -1,4 +1,6 @@
-FROM nakachain/bootnode:1.2.0
+ARG VERSION=latest
+FROM nakachain/bootnode:$VERSION
+RUN echo "Using nakachain/bootnode:${VERSION}"
 
 # RUN adduser -u 1000 -D server
 # USER server
