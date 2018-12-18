@@ -1,4 +1,4 @@
-FROM nakachain/go-naka:1.2.0
+FROM nakachain/go-naka:v1.3.0
 
 # RUN adduser -u 1000 -D server
 # USER server
