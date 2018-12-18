@@ -1,6 +1,6 @@
-ARG VERSION=latest
-FROM nakachain/go-naka:$VERSION
-RUN echo "Using nakachain/go-naka:${VERSION}"
+ARG IMAGE=nakachain/bootnode:latest
+FROM ${IMAGE}
+RUN echo "Using ${IMAGE}"
 
 # Run init genesis script if needed
 COPY ./setup/genesis.json /root/.naka/

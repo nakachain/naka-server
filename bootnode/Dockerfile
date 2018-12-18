@@ -1,6 +1,6 @@
-ARG VERSION=latest
-FROM nakachain/bootnode:$VERSION
-RUN echo "Using nakachain/bootnode:${VERSION}"
+ARG IMAGE=nakachain/bootnode:latest
+FROM ${IMAGE}
+RUN echo "Using ${IMAGE}"
 
 # RUN adduser -u 1000 -D server
 # USER server
