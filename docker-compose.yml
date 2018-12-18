@@ -7,6 +7,8 @@ services:
     build:
       context: .
       dockerfile: ./bootnode/Dockerfile
+      args:
+        VERSION: "v1.3.0"
     networks:
       chainnet: 
         ipv4_address: 172.25.0.101
@@ -22,6 +24,7 @@ services:
       context: .
       dockerfile: ./node/Dockerfile
       args:
+        VERSION: "v1.3.0"
         PRIVATE_KEY: "60fbbf711c6fcdc50e39a98116a2240330c393a5f3df2f05b72dcbe0857bdc3b" # ONLY FOR DEV
         PASSWORD: "naka" # ONLY FOR DEV
     environment:
@@ -51,6 +54,7 @@ services:
       context: .
       dockerfile: ./node/Dockerfile
       args:
+        VERSION: "v1.3.0"
         PRIVATE_KEY: "c1678e3589a49ed370d0764aafe20d061cffb5d6ec9ff2676285135f5bc96d4d" # ONLY FOR DEV
         PASSWORD: "naka" # ONLY FOR DEV
     environment:
