@@ -14,9 +14,9 @@ services:
       chainnet: 
         ipv4_address: 172.25.0.101
     ports:
-      - 8545:8545
-      - 8546:8546
-      - 30303:30303
+      - 9545:8545
+      - 9546:8546
+      - 40303:30303
     volumes:
       - testnet-client-data:/root/.naka:rw
     logging:

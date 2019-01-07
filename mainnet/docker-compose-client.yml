@@ -8,7 +8,7 @@ services:
       context: ../
       dockerfile: ./client/Dockerfile
     environment:
-        BOOTNODE_ID: "64b6b3687e748673f192c4967719677ef90e67083435364a85e714e870d343b93ebe8561cdff9d347db86af12aee490f9a2b012e4b80dc31e767b871fe6b7ea5"
+        BOOTNODE_ID: "29808ed7af11bc46b38b9eab91db47ec40e4733fdc7684183655e2ed2a262676ce5bed031fb79750035f229b0d4288cdc3ead13b777704535aabedad2d4ff8b5"
         BOOTNODE_IP: "52.194.161.36"
     networks:
       chainnet: 

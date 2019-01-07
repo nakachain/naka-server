@@ -9,9 +9,9 @@ services:
       dockerfile: ./bootnode/Dockerfile
     networks:
       chainnet: 
-        ipv4_address: 172.25.0.101
+        ipv4_address: 172.25.0.111
     ports:
-      - 30301:30301
+      - 40301:30301
 
   testnet-node1:
     hostname: testnet-node1
@@ -27,15 +27,15 @@ services:
     environment:
         ADDRESS: "0x8102c0ecece895b8fefbddf42b95b7a20925b0c8"
         BOOTNODE_ID: "64b6b3687e748673f192c4967719677ef90e67083435364a85e714e870d343b93ebe8561cdff9d347db86af12aee490f9a2b012e4b80dc31e767b871fe6b7ea5"
-        BOOTNODE_IP: "172.25.0.101"
+        BOOTNODE_IP: "172.25.0.111"
     networks:
       chainnet: 
-        ipv4_address: 172.25.0.102
+        ipv4_address: 172.25.0.112
     ports:
-      - 8545:8545
-      - 30303:30303
+      - 9545:8545
+      - 40303:30303
     volumes:
-      - node1-testnet-data:/root/.naka:rw
+      - testnet-node1-data:/root/.naka:rw
     logging:
       driver: json-file
       options:
@@ -56,15 +56,15 @@ services:
     environment:
         ADDRESS: "0x60afa8f21f3dba79f3dc9708bc890056c286e7a4"
         BOOTNODE_ID: "64b6b3687e748673f192c4967719677ef90e67083435364a85e714e870d343b93ebe8561cdff9d347db86af12aee490f9a2b012e4b80dc31e767b871fe6b7ea5"
-        BOOTNODE_IP: "172.25.0.101"
+        BOOTNODE_IP: "172.25.0.111"
     networks:
       chainnet: 
-        ipv4_address: 172.25.0.103
+        ipv4_address: 172.25.0.113
     ports:
-      - 8546:8545
-      - 30304:30303
+      - 9546:8545
+      - 40304:30303
     volumes:
-      - node2-testnet-data:/root/.naka:rw
+      - testnet-node2-data:/root/.naka:rw
     logging:
       driver: json-file
       options:
@@ -79,5 +79,5 @@ networks:
       - subnet: 172.25.0.0/24
 
 volumes:
-  node1-testnet-data:
-  node2-testnet-data:
+  testnet-node1-data:
+  testnet-node2-data:
