@@ -3,7 +3,7 @@
 geth \
 --datadir /root/.naka \
 --syncmode full \
---networkid 25 \
+--networkid "$CHAIN_ID" \
 --nat=none \
 --targetgaslimit 4700000 \
 --rpc \
