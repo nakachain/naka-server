@@ -1,8 +1,8 @@
 FROM nakachain/bootnode:v1.4.1
 
 # Copy bootkey
-ARG BOOTKEY_PATH
 RUN mkdir /root/.naka
+ARG BOOTKEY_PATH
 COPY ${BOOTKEY_PATH} /root/.naka
 
 # Start bootnode

@@ -24,8 +24,11 @@ services:
       context: ../
       dockerfile: ./node/Dockerfile
       args:
+        GENESIS_PATH: "./mainnet/setup/genesis.json"
+        INIT_GENESIS_PATH: "./mainnet/setup/init-genesis.sh"
         PRIVATE_KEY: "60fbbf711c6fcdc50e39a98116a2240330c393a5f3df2f05b72dcbe0857bdc3b" # ONLY FOR DEV
         PASSWORD: "naka" # ONLY FOR DEV
+        EXPOSED_PORTS: "8545 30303"
     environment:
         ADDRESS: "0x8102c0ecece895b8fefbddf42b95b7a20925b0c8"
         BOOTNODE_ID: "29808ed7af11bc46b38b9eab91db47ec40e4733fdc7684183655e2ed2a262676ce5bed031fb79750035f229b0d4288cdc3ead13b777704535aabedad2d4ff8b5"
@@ -53,8 +56,11 @@ services:
       context: ../
       dockerfile: ./node/Dockerfile
       args:
+        GENESIS_PATH: "./mainnet/setup/genesis.json"
+        INIT_GENESIS_PATH: "./mainnet/setup/init-genesis.sh"
         PRIVATE_KEY: "c1678e3589a49ed370d0764aafe20d061cffb5d6ec9ff2676285135f5bc96d4d" # ONLY FOR DEV
         PASSWORD: "naka" # ONLY FOR DEV
+        EXPOSED_PORTS: "8546 30304"
     environment:
         ADDRESS: "0x60afa8f21f3dba79f3dc9708bc890056c286e7a4"
         BOOTNODE_ID: "29808ed7af11bc46b38b9eab91db47ec40e4733fdc7684183655e2ed2a262676ce5bed031fb79750035f229b0d4288cdc3ead13b777704535aabedad2d4ff8b5"
