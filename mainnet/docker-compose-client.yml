@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  mainnet-client:
+    hostname: mainnet-client
+    container_name: mainnet-client
+    build:
+      context: ../
+      dockerfile: ./client/Dockerfile
+    environment:
+        BOOTNODE_ID: "64b6b3687e748673f192c4967719677ef90e67083435364a85e714e870d343b93ebe8561cdff9d347db86af12aee490f9a2b012e4b80dc31e767b871fe6b7ea5"
+        BOOTNODE_IP: "52.194.161.36"
+    networks:
+      chainnet: 
+        ipv4_address: 172.25.0.101
+    ports:
+      - 8545:8545
+      - 8546:8546
+      - 30303:30303
+    volumes:
+      - mainnet-client-data:/root/.naka:rw
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "10"
+
+volumes:
+  mainnet-client-data:
+
+networks:
+  chainnet:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.25.0.0/24
