@@ -1,8 +1,4 @@
-FROM nakachain/go-naka:v1.3.0
-
-# RUN adduser -u 1000 -D server
-# USER server
-# RUN id
+FROM nakachain/go-naka:v1.4.1
 
 # Run init genesis script if needed
 COPY ./setup/genesis.json /root/.naka/
