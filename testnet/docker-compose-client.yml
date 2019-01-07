@@ -12,7 +12,7 @@ services:
         BOOTNODE_IP: "52.194.161.36"
     networks:
       chainnet: 
-        ipv4_address: 172.25.0.101
+        ipv4_address: 172.25.0.102
     ports:
       - 9545:8545
       - 9546:8546
