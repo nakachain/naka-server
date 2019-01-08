@@ -72,7 +72,7 @@ services:
       BOOTNODE_ID: "64b6b3687e748673f192c4967719677ef90e67083435364a85e714e870d343b93ebe8561cdff9d347db86af12aee490f9a2b012e4b80dc31e767b871fe6b7ea5"
       BOOTNODE_IP: "172.25.0.101:30301"
     networks:
-      chainnet: 
+      testnet-net: 
         ipv4_address: 172.25.0.103
     ports:
       - 8547:8545
