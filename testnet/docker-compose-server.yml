@@ -28,9 +28,11 @@ services:
         GENESIS_PATH: "./testnet/setup/genesis.json"
         PRIVATE_KEY: "60fbbf711c6fcdc50e39a98116a2240330c393a5f3df2f05b72dcbe0857bdc3b" # ONLY FOR DEV
         PASSWORD: "naka" # ONLY FOR DEV
-        EXPOSED_PORTS: "8545 30303"
+        EXPOSED_PORTS: "8545 8546 30303"
     environment:
       CHAIN_ID: 2018
+      RPC_PORT: 8545
+      WS_PORT: 8546
       ADDRESS: "0x8102c0ecece895b8fefbddf42b95b7a20925b0c8"
       BOOTNODE_ID: "64b6b3687e748673f192c4967719677ef90e67083435364a85e714e870d343b93ebe8561cdff9d347db86af12aee490f9a2b012e4b80dc31e767b871fe6b7ea5"
       BOOTNODE_IP: "172.25.0.101:30301"
@@ -39,6 +41,7 @@ services:
         ipv4_address: 172.25.0.102
     ports:
       - 8545:8545
+      - 8546:8546
       - 30303:30303
     volumes:
       - testnet-node1-data:/root/.naka:rw
@@ -60,9 +63,11 @@ services:
         GENESIS_PATH: "./testnet/setup/genesis.json"
         PRIVATE_KEY: "c1678e3589a49ed370d0764aafe20d061cffb5d6ec9ff2676285135f5bc96d4d" # ONLY FOR DEV
         PASSWORD: "naka" # ONLY FOR DEV
-        EXPOSED_PORTS: "8546 30304"
+        EXPOSED_PORTS: "8547 8548 30304"
     environment:
       CHAIN_ID: 2018
+      RPC_PORT: 8547
+      WS_PORT: 8548
       ADDRESS: "0x60afa8f21f3dba79f3dc9708bc890056c286e7a4"
       BOOTNODE_ID: "64b6b3687e748673f192c4967719677ef90e67083435364a85e714e870d343b93ebe8561cdff9d347db86af12aee490f9a2b012e4b80dc31e767b871fe6b7ea5"
       BOOTNODE_IP: "172.25.0.101:30301"
@@ -70,7 +75,8 @@ services:
       chainnet: 
         ipv4_address: 172.25.0.103
     ports:
-      - 8546:8545
+      - 8547:8545
+      - 8548:8546
       - 30304:30303
     volumes:
       - testnet-node2-data:/root/.naka:rw
