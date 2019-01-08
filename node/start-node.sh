@@ -11,7 +11,7 @@ geth \
 --rpccorsdomain "*" \
 --verbosity 4 \
 --mine \
---bootnodes "enode://$BOOTNODE_ID@$BOOTNODE_IP:30301" \
+--bootnodes "enode://$BOOTNODE_ID@$BOOTNODE_IP" \
 --etherbase "$ADDRESS" \
 --unlock "$ADDRESS" \
 --password /root/.naka/.accountpw
