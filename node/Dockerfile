@@ -5,8 +5,7 @@ ARG GENESIS_PATH
 COPY ${GENESIS_PATH} /root/.naka/
 
 # Run init genesis script
-ARG INIT_GENESIS_PATH
-COPY ${INIT_GENESIS_PATH} /usr/local/bin
+COPY ./script/init-genesis.sh /usr/local/bin
 RUN init-genesis.sh
 
 # Import account

@@ -26,7 +26,6 @@ services:
       dockerfile: ./node/Dockerfile
       args:
         GENESIS_PATH: "./testnet/setup/genesis.json"
-        INIT_GENESIS_PATH: "./testnet/setup/init-genesis.sh"
         PRIVATE_KEY: "60fbbf711c6fcdc50e39a98116a2240330c393a5f3df2f05b72dcbe0857bdc3b" # ONLY FOR DEV
         PASSWORD: "naka" # ONLY FOR DEV
         EXPOSED_PORTS: "9545 40303"
@@ -59,7 +58,6 @@ services:
       dockerfile: ./node/Dockerfile
       args:
         GENESIS_PATH: "./testnet/setup/genesis.json"
-        INIT_GENESIS_PATH: "./testnet/setup/init-genesis.sh"
         PRIVATE_KEY: "c1678e3589a49ed370d0764aafe20d061cffb5d6ec9ff2676285135f5bc96d4d" # ONLY FOR DEV
         PASSWORD: "naka" # ONLY FOR DEV
         EXPOSED_PORTS: "9546 40304"

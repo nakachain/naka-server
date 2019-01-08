@@ -9,7 +9,6 @@ services:
       dockerfile: ./client/Dockerfile
       args:
         GENESIS_PATH: "./mainnet/setup/genesis.json"
-        INIT_GENESIS_PATH: "./mainnet/setup/init-genesis.sh"
         EXPOSED_PORTS: "8545 8546 30303"
     environment:
       CHAIN_ID: 250
