@@ -11,7 +11,7 @@ services:
         GENESIS_PATH: "./testnet/setup/genesis.json"
         EXPOSED_PORTS: "9545 9546 40303"
     environment:
-      CHAIN_ID: 251
+      CHAIN_ID: 2018
       BOOTNODE_ID: "64b6b3687e748673f192c4967719677ef90e67083435364a85e714e870d343b93ebe8561cdff9d347db86af12aee490f9a2b012e4b80dc31e767b871fe6b7ea5"
       BOOTNODE_IP: "52.194.161.36:40301"
     ports:
