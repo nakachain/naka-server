@@ -9,15 +9,15 @@ services:
       dockerfile: ./client/Dockerfile
       args:
         GENESIS_PATH: "./mainnet/setup/genesis.json"
-        EXPOSED_PORTS: "9545 9546 40303"
+        EXPOSED_PORTS: "8545 8546 30303"
     environment:
       CHAIN_ID: 2019
       BOOTNODE_ID: "29808ed7af11bc46b38b9eab91db47ec40e4733fdc7684183655e2ed2a262676ce5bed031fb79750035f229b0d4288cdc3ead13b777704535aabedad2d4ff8b5"
       BOOTNODE_IP: "52.194.161.36:40301"
     ports:
-      - 9545:8545
-      - 9546:8546
-      - 40303:30303
+      - 8545:8545
+      - 8546:8546
+      - 30303:30303
     volumes:
       - mainnet-client-data:/root/.naka:rw
     logging:
