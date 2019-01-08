@@ -9,6 +9,7 @@ services:
       dockerfile: ./bootnode/Dockerfile
       args:
         BOOTKEY_PATH: "./mainnet/setup/boot.key"
+        EXPOSED_PORTS: "30301"
     networks:
       chainnet: 
         ipv4_address: 172.25.0.101
