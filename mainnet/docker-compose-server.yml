@@ -1,9 +1,9 @@
 version: '3.7'
 
 services:
-  bootnode:
-    hostname: bootnode
-    container_name: bootnode
+  mainnet-bootnode:
+    hostname: mainnet-bootnode
+    container_name: mainnet-bootnode
     build:
       context: ../
       dockerfile: ./bootnode/Dockerfile
@@ -20,7 +20,7 @@ services:
     hostname: mainnet-node1
     container_name: mainnet-node1
     depends_on:
-      - bootnode
+      - mainnet-bootnode
     build:
       context: ../
       dockerfile: ./node/Dockerfile
@@ -52,7 +52,7 @@ services:
     hostname: mainnet-node2
     container_name: mainnet-node2
     depends_on:
-      - bootnode
+      - mainnet-bootnode
     build:
       context: ../
       dockerfile: ./node/Dockerfile
