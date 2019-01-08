@@ -44,7 +44,7 @@ services:
       - 8546:8546
       - 30303:30303
     volumes:
-      - testnet-node1-data:/root/.naka:rw
+      - node1-testnet-data:/root/.naka:rw
     logging:
       driver: json-file
       options:
@@ -79,7 +79,7 @@ services:
       - 8548:8546
       - 30304:30303
     volumes:
-      - testnet-node2-data:/root/.naka:rw
+      - node2-testnet-data:/root/.naka:rw
     logging:
       driver: json-file
       options:
@@ -94,5 +94,5 @@ networks:
       - subnet: 172.25.0.0/24
 
 volumes:
-  testnet-node1-data:
-  testnet-node2-data:
+  node1-testnet-data:
+  node2-testnet-data:
