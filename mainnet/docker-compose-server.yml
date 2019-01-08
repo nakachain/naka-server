@@ -9,12 +9,12 @@ services:
       dockerfile: ./bootnode/Dockerfile
       args:
         BOOTKEY_PATH: "./mainnet/setup/boot.key"
-        EXPOSED_PORTS: "30301"
+        EXPOSED_PORTS: "40301"
     networks:
       mainnet-net: 
         ipv4_address: 172.26.0.101
     ports:
-      - 30301:30301
+      - 40301:30301
 
   mainnet-node1:
     hostname: mainnet-node1
@@ -28,18 +28,18 @@ services:
         GENESIS_PATH: "./mainnet/setup/genesis.json"
         PRIVATE_KEY: "60fbbf711c6fcdc50e39a98116a2240330c393a5f3df2f05b72dcbe0857bdc3b" # ONLY FOR DEV
         PASSWORD: "naka" # ONLY FOR DEV
-        EXPOSED_PORTS: "8545 30303"
+        EXPOSED_PORTS: "9545 40303"
     environment:
       CHAIN_ID: 2019
       ADDRESS: "0x8102c0ecece895b8fefbddf42b95b7a20925b0c8"
       BOOTNODE_ID: "29808ed7af11bc46b38b9eab91db47ec40e4733fdc7684183655e2ed2a262676ce5bed031fb79750035f229b0d4288cdc3ead13b777704535aabedad2d4ff8b5"
-      BOOTNODE_IP: "172.26.0.101:30301"
+      BOOTNODE_IP: "172.26.0.101:40301"
     networks:
       mainnet-net: 
         ipv4_address: 172.26.0.102
     ports:
-      - 8545:8545
-      - 30303:30303
+      - 9545:8545
+      - 40303:30303
     volumes:
       - mainnet-node1-data:/root/.naka:rw
     logging:
@@ -60,7 +60,7 @@ services:
         GENESIS_PATH: "./mainnet/setup/genesis.json"
         PRIVATE_KEY: "c1678e3589a49ed370d0764aafe20d061cffb5d6ec9ff2676285135f5bc96d4d" # ONLY FOR DEV
         PASSWORD: "naka" # ONLY FOR DEV
-        EXPOSED_PORTS: "8546 30304"
+        EXPOSED_PORTS: "9546 40304"
     environment:
       CHAIN_ID: 2019
       ADDRESS: "0x60afa8f21f3dba79f3dc9708bc890056c286e7a4"
@@ -70,8 +70,8 @@ services:
       mainnet-net: 
         ipv4_address: 172.26.0.103
     ports:
-      - 8546:8545
-      - 30304:30303
+      - 9546:8545
+      - 40304:30303
     volumes:
       - mainnet-node2-data:/root/.naka:rw
     logging:
