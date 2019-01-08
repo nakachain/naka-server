@@ -30,10 +30,10 @@ services:
         PASSWORD: "naka" # ONLY FOR DEV
         EXPOSED_PORTS: "8545 30303"
     environment:
-        CHAIN_ID: 250
-        ADDRESS: "0x8102c0ecece895b8fefbddf42b95b7a20925b0c8"
-        BOOTNODE_ID: "29808ed7af11bc46b38b9eab91db47ec40e4733fdc7684183655e2ed2a262676ce5bed031fb79750035f229b0d4288cdc3ead13b777704535aabedad2d4ff8b5"
-        BOOTNODE_IP: "172.25.0.101"
+      CHAIN_ID: 250
+      ADDRESS: "0x8102c0ecece895b8fefbddf42b95b7a20925b0c8"
+      BOOTNODE_ID: "29808ed7af11bc46b38b9eab91db47ec40e4733fdc7684183655e2ed2a262676ce5bed031fb79750035f229b0d4288cdc3ead13b777704535aabedad2d4ff8b5"
+      BOOTNODE_IP: "172.25.0.101"
     networks:
       chainnet: 
         ipv4_address: 172.25.0.102
@@ -63,10 +63,10 @@ services:
         PASSWORD: "naka" # ONLY FOR DEV
         EXPOSED_PORTS: "8546 30304"
     environment:
-        CHAIN_ID: 250
-        ADDRESS: "0x60afa8f21f3dba79f3dc9708bc890056c286e7a4"
-        BOOTNODE_ID: "29808ed7af11bc46b38b9eab91db47ec40e4733fdc7684183655e2ed2a262676ce5bed031fb79750035f229b0d4288cdc3ead13b777704535aabedad2d4ff8b5"
-        BOOTNODE_IP: "172.25.0.101"
+      CHAIN_ID: 250
+      ADDRESS: "0x60afa8f21f3dba79f3dc9708bc890056c286e7a4"
+      BOOTNODE_ID: "29808ed7af11bc46b38b9eab91db47ec40e4733fdc7684183655e2ed2a262676ce5bed031fb79750035f229b0d4288cdc3ead13b777704535aabedad2d4ff8b5"
+      BOOTNODE_IP: "172.25.0.101"
     networks:
       chainnet: 
         ipv4_address: 172.25.0.103
