@@ -65,7 +65,7 @@ services:
       CHAIN_ID: 2019
       ADDRESS: "0x60afa8f21f3dba79f3dc9708bc890056c286e7a4"
       BOOTNODE_ID: "29808ed7af11bc46b38b9eab91db47ec40e4733fdc7684183655e2ed2a262676ce5bed031fb79750035f229b0d4288cdc3ead13b777704535aabedad2d4ff8b5"
-      BOOTNODE_IP: "172.26.0.101:30301"
+      BOOTNODE_IP: "172.26.0.101:40301"
     networks:
       mainnet-net: 
         ipv4_address: 172.26.0.103
