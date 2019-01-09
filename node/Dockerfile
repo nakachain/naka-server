@@ -1,15 +1,14 @@
-FROM nakachain/go-naka:v1.3.0
+FROM nakachain/go-naka:v1.4.1
 
-# RUN adduser -u 1000 -D server
-# USER server
-# RUN id
+# Copy genesis.json
+ARG GENESIS_PATH
+COPY ${GENESIS_PATH} /root/.naka/
 
-# Run init genesis script if needed
-COPY ./setup/genesis.json /root/.naka/
-COPY ./setup/init-genesis.sh /usr/local/bin
-COPY ./node/start-node.sh /usr/local/bin
+# Run init genesis script
+COPY ./script/init-genesis.sh /usr/local/bin
 RUN init-genesis.sh
 
+# Import account
 # NOT SAFE FOR PROD! change method of adding accts later.
 ARG PRIVATE_KEY
 ARG PASSWORD
@@ -17,7 +16,10 @@ RUN echo $PRIVATE_KEY > /root/.naka/.privatekey
 RUN echo $PASSWORD > /root/.naka/.accountpw
 RUN geth --datadir /root/.naka account import --password /root/.naka/.accountpw /root/.naka/.privatekey
 
-# Run geth script
+# Run start script
+COPY ./node/start-node.sh /usr/local/bin
 ENTRYPOINT ["start-node.sh"]
 
-EXPOSE 8545 30303
+# Expose ports
+ARG EXPOSED_PORTS
+EXPOSE ${EXPOSED_PORTS}

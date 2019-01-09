@@ -1,12 +1,17 @@
-FROM nakachain/go-naka:v1.3.0
+FROM nakachain/go-naka:v1.4.1
 
-# Run init genesis script if needed
-COPY ./setup/genesis.json /root/.naka/
-COPY ./setup/init-genesis.sh /usr/local/bin
-COPY ./client/start-client.sh /usr/local/bin
+# Copy genesis.json
+ARG GENESIS_PATH
+COPY ${GENESIS_PATH} /root/.naka/
+
+# Run init genesis script
+COPY ./script/init-genesis.sh /usr/local/bin
 RUN init-genesis.sh
 
-# Run geth script
+# Run start script
+COPY ./client/start-client.sh /usr/local/bin
 ENTRYPOINT ["start-client.sh"]
 
-EXPOSE 8545 8546 30303
+# Expose ports
+ARG EXPOSED_PORTS
+EXPOSE ${EXPOSED_PORTS}

@@ -1,13 +1,13 @@
-FROM nakachain/bootnode:v1.3.0
-
-# RUN adduser -u 1000 -D server
-# USER server
+FROM nakachain/bootnode:v1.4.1
 
 # Copy bootkey
 RUN mkdir /root/.naka
-COPY ./setup/boot.key /root/.naka
+ARG BOOTKEY_PATH
+COPY ${BOOTKEY_PATH} /root/.naka
 
 # Start bootnode
 CMD ["-nodekey", "/root/.naka/boot.key", "-verbosity", "9"]
 
-EXPOSE 30301
+# Expose ports
+ARG EXPOSED_PORTS
+EXPOSE ${EXPOSED_PORTS}
