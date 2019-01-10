@@ -1,9 +1,23 @@
 #!/bin/sh
 
-VOLUME_NAME="mainnet_mainnet-client-data"
-DEST_PATH="/root/.naka/mainnet/geth"
+VOLUME_NAME=$1
+DEST_PATH=$2
 
-echo "Backing up volume ${VOLUME_NAME}..."
+if [ -z "${VOLUME_NAME}" ]
+then
+    echo "Backing up volume ${VOLUME_NAME}"
+else
+    echo "volume name not defined"
+    exit 2
+fi
+
+if [ -z "${DEST_PATH}" ]
+then
+    echo "Writing to ${DEST_PATH}"
+else
+    echo "destination not defined"
+    exit 2
+fi
 
 # Get mountpoint path
 docker volume inspect ${VOLUME_NAME} > volume.txt
@@ -22,4 +36,4 @@ sudo rm -rf "${DEST_PATH}/lightchaindata"
 sudo cp -r "${MOUNTPOINT}/geth/chaindata" ${DEST_PATH}
 sudo cp -r "${MOUNTPOINT}/geth/lightchaindata" ${DEST_PATH}
 
-echo "Finished backing up volume"
+echo "Finished backing up volume ${VOLUME_NAME}"
