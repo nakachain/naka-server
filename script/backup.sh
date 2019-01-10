@@ -9,8 +9,6 @@ then
     echo "volume name not defined"
     echo ${MESSAGE}
     exit 2
-else
-    echo "Backing up volume ${VOLUME_NAME}"
 fi
 
 if [ -z "${DEST_PATH}" ]
@@ -18,9 +16,10 @@ then
     echo "destination not defined"
     echo ${MESSAGE}
     exit 2
-else
-    echo "Writing to ${DEST_PATH}"
 fi
+
+echo "Backing up volume ${VOLUME_NAME}"
+echo "Writing to ${DEST_PATH}"
 
 # Get mountpoint path
 docker volume inspect ${VOLUME_NAME} > volume.txt
