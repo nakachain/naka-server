@@ -29,3 +29,5 @@ rm volume.txt
 # Copy chaindata folders
 sudo cp -r ${ORIGIN_PATH} "${MOUNTPOINT}/geth/chaindata" 
 sudo cp -r ${ORIGIN_PATH} "${MOUNTPOINT}/geth/lightchaindata"
+
+echo "Finished restoring volume ${VOLUME_NAME}"
