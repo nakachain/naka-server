@@ -1,11 +1,13 @@
 #!/bin/sh
 
+MESSAGE="$ ./backup.sh docker-volume-name /path/to/backup/dir"
 VOLUME_NAME=$1
 DEST_PATH=$2
 
 if [ -z "${VOLUME_NAME}" ]
 then
     echo "volume name not defined"
+    echo ${MESSAGE}
     exit 2
 else
     echo "Backing up volume ${VOLUME_NAME}"
@@ -14,6 +16,7 @@ fi
 if [ -z "${DEST_PATH}" ]
 then
     echo "destination not defined"
+    echo ${MESSAGE}
     exit 2
 else
     echo "Writing to ${DEST_PATH}"
