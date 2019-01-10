@@ -5,18 +5,18 @@ DEST_PATH=$2
 
 if [ -z "${VOLUME_NAME}" ]
 then
-    echo "Backing up volume ${VOLUME_NAME}"
-else
     echo "volume name not defined"
     exit 2
+else
+    echo "Backing up volume ${VOLUME_NAME}"
 fi
 
 if [ -z "${DEST_PATH}" ]
 then
-    echo "Writing to ${DEST_PATH}"
-else
     echo "destination not defined"
     exit 2
+else
+    echo "Writing to ${DEST_PATH}"
 fi
 
 # Get mountpoint path
