@@ -3,7 +3,7 @@
 VOLUME_NAME="mainnet_mainnet-client-data"
 DEST_PATH="/root/.naka/mainnet/geth"
 
-echo "Copying volume ${VOLUME_NAME}..."
+echo "Backing up volume ${VOLUME_NAME}..."
 
 # Get mountpoint path
 docker volume inspect ${VOLUME_NAME} > volume.txt
@@ -21,3 +21,5 @@ sudo rm -rf "${DEST_PATH}/lightchaindata"
 # Copy chaindata folders
 sudo cp -r "${MOUNTPOINT}/geth/chaindata" ${DEST_PATH}
 sudo cp -r "${MOUNTPOINT}/geth/lightchaindata" ${DEST_PATH}
+
+echo "Finished backing up volume"
