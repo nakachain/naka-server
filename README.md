@@ -1,4 +1,4 @@
-## Starting Client Node
+## Client Node
 A client node is a non-sealer node.
 
 **Start**
@@ -12,7 +12,20 @@ A client node is a non-sealer node.
 docker-compose -f docker-compose-client.yml down
 ```
 
-## Starting Sealer Node
+## Sealer Node
+You will need to create an `.env` file in the proper folder (mainnet/testnet) before deploying the sealer nodes.
+
+**Example .env file**
+```
+CHAIN_ID=12345
+NODE1_ADDRESS=0x1234567890123456789012345678901234567890
+NODE1_PRIVATE_KEY=1234567890123456789012345678901234567890123456789012345678901234
+NODE1_PASSWORD=mypw
+NODE2_ADDRESS=0x1234567890123456789012345678901234567890
+NODE2_PRIVATE_KEY=1234567890123456789012345678901234567890123456789012345678901234
+NODE2_PASSWORD=mypw
+```
+
 **Start**
 ```
 docker-compose -f docker-compose-server.yml up --build -d

@@ -9,12 +9,17 @@ COPY ./script/init-genesis.sh /usr/local/bin
 RUN init-genesis.sh
 
 # Import account
-# NOT SAFE FOR PROD! change method of adding accts later.
 ARG PRIVATE_KEY
 ARG PASSWORD
 RUN echo $PRIVATE_KEY > /root/.naka/.privatekey
 RUN echo $PASSWORD > /root/.naka/.accountpw
 RUN geth --datadir /root/.naka account import --password /root/.naka/.accountpw /root/.naka/.privatekey
+
+# Create env vars for shell script
+ARG CHAIN_ID
+ARG ADDRESS
+ENV CHAIN_ID=$CHAIN_ID
+ENV ADDRESS=$ADDRESS
 
 # Run start script
 COPY ./node/start-node.sh /usr/local/bin

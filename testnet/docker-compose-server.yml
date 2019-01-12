@@ -26,14 +26,12 @@ services:
       dockerfile: ./node/Dockerfile
       args:
         GENESIS_PATH: "./testnet/setup/genesis.json"
-        PRIVATE_KEY: "60fbbf711c6fcdc50e39a98116a2240330c393a5f3df2f05b72dcbe0857bdc3b" # ONLY FOR DEV
-        PASSWORD: "naka" # ONLY FOR DEV
         EXPOSED_PORTS: "8545 8546 30303"
+        CHAIN_ID: ${CHAIN_ID}
+        ADDRESS: ${NODE1_ADDRESS}
+        PRIVATE_KEY: ${NODE1_PRIVATE_KEY}
+        PASSWORD: ${NODE1_PASSWORD}
     environment:
-      CHAIN_ID: 25
-      RPC_PORT: 8545
-      WS_PORT: 8546
-      ADDRESS: "0x8102c0ecece895b8fefbddf42b95b7a20925b0c8"
       BOOTNODE_ID: "64b6b3687e748673f192c4967719677ef90e67083435364a85e714e870d343b93ebe8561cdff9d347db86af12aee490f9a2b012e4b80dc31e767b871fe6b7ea5"
       BOOTNODE_IP: "172.25.0.101:30301"
     networks:
@@ -61,14 +59,12 @@ services:
       dockerfile: ./node/Dockerfile
       args:
         GENESIS_PATH: "./testnet/setup/genesis.json"
-        PRIVATE_KEY: "c1678e3589a49ed370d0764aafe20d061cffb5d6ec9ff2676285135f5bc96d4d" # ONLY FOR DEV
-        PASSWORD: "naka" # ONLY FOR DEV
         EXPOSED_PORTS: "8547 8548 30304"
+        CHAIN_ID: ${CHAIN_ID}
+        ADDRESS: ${NODE2_ADDRESS}
+        PRIVATE_KEY: ${NODE2_PRIVATE_KEY}
+        PASSWORD: ${NODE2_PASSWORD}
     environment:
-      CHAIN_ID: 25
-      RPC_PORT: 8547
-      WS_PORT: 8548
-      ADDRESS: "0x60afa8f21f3dba79f3dc9708bc890056c286e7a4"
       BOOTNODE_ID: "64b6b3687e748673f192c4967719677ef90e67083435364a85e714e870d343b93ebe8561cdff9d347db86af12aee490f9a2b012e4b80dc31e767b871fe6b7ea5"
       BOOTNODE_IP: "172.25.0.101:30301"
     networks:
