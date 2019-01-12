@@ -9,9 +9,8 @@ COPY ./script/init-genesis.sh /usr/local/bin
 RUN init-genesis.sh
 
 # Import account
-# NOT SAFE FOR PROD! change method of adding accts later.
-ARG PRIVATE_KEY
-ARG PASSWORD
+ENV PRIVATE_KEY=""
+ENV PASSWORD=""
 RUN echo $PRIVATE_KEY > /root/.naka/.privatekey
 RUN echo $PASSWORD > /root/.naka/.accountpw
 RUN geth --datadir /root/.naka account import --password /root/.naka/.accountpw /root/.naka/.privatekey
