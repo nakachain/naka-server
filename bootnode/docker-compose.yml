@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  bootnode:
+    hostname: bootnode
+    container_name: bootnode
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    network_mode: "host"
+    ports:
+      - 30301

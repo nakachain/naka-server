@@ -9,5 +9,4 @@ COPY ${BOOTKEY_PATH} /root/.naka
 CMD ["-nodekey", "/root/.naka/boot.key", "-verbosity", "9"]
 
 # Expose ports
-ARG EXPOSED_PORTS
-EXPOSE ${EXPOSED_PORTS}
+EXPOSE 30301
