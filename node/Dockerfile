@@ -16,9 +16,13 @@ RUN echo $PASSWORD > /root/.naka/.accountpw
 RUN geth --datadir /root/.naka account import --password /root/.naka/.accountpw /root/.naka/.privatekey
 
 # Create env vars for shell script
+ARG BOOTNODES
 ARG CHAIN_ID
 ARG ADDRESS
+ARG ETHERBASE_ADDRESS
+ENV BOOTNODES=$BOOTNODES
 ENV CHAIN_ID=$CHAIN_ID
+ENV ETHERBASE_ADDRESS=$ETHERBASE_ADDRESS
 ENV ADDRESS=$ADDRESS
 
 # Run start script
