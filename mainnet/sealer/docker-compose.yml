@@ -5,7 +5,7 @@ services:
     hostname: mainnet-sealer
     container_name: mainnet-sealer
     build:
-      context: ../
+      context: ../../
       dockerfile: ./node/Dockerfile
       args:
         GENESIS_PATH: "./mainnet/genesis.json"
