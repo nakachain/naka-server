@@ -83,4 +83,8 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/linux,macos,windows,visualstudiocode
 
+# Dotenv
 .env
+
+# Bootnode
+*.key
