@@ -1,94 +1,33 @@
 version: '3.7'
 
 services:
-  testnet-bootnode:
-    hostname: testnet-bootnode
-    container_name: testnet-bootnode
+  testnet-sealer:
+    hostname: testnet-sealer
+    container_name: testnet-sealer
     build:
-      context: ../
-      dockerfile: ./bootnode/Dockerfile
-      args:
-        BOOTKEY_PATH: "./testnet/setup/boot.key"
-        EXPOSED_PORTS: "30301"
-    networks:
-      testnet-net: 
-        ipv4_address: 172.25.0.101
-    ports:
-      - 30301:30301
-
-  testnet-node1:
-    hostname: testnet-node1
-    container_name: testnet-node1
-    depends_on:
-      - testnet-bootnode
-    build:
-      context: ../
+      context: ../../
       dockerfile: ./node/Dockerfile
       args:
-        GENESIS_PATH: "./testnet/setup/genesis.json"
+        GENESIS_PATH: "./testnet/genesis.json"
         EXPOSED_PORTS: "8545 8546 30303"
+        BOOTNODES: ${BOOTNODES}
         CHAIN_ID: ${CHAIN_ID}
-        ADDRESS: ${NODE1_ADDRESS}
-        PRIVATE_KEY: ${NODE1_PRIVATE_KEY}
-        PASSWORD: ${NODE1_PASSWORD}
-    environment:
-      BOOTNODE_ID: "64b6b3687e748673f192c4967719677ef90e67083435364a85e714e870d343b93ebe8561cdff9d347db86af12aee490f9a2b012e4b80dc31e767b871fe6b7ea5"
-      BOOTNODE_IP: "172.25.0.101:30301"
-    networks:
-      testnet-net: 
-        ipv4_address: 172.25.0.102
+        ETHERBASE_ADDRESS: ${ETHERBASE_ADDRESS}
+        ADDRESS: ${ACCOUNT_ADDRESS}
+        PRIVATE_KEY: ${ACCOUNT_PRIVATE_KEY}
+        PASSWORD: ${ACCOUNT_PASSWORD}
+    network_mode: "host"
     ports:
-      - 8545:8545
-      - 8546:8546
-      - 30303:30303
+      - 8545
+      - 8546
+      - 30303
     volumes:
-      - testnet-node1-data:/root/.naka:rw
+      - testnet-sealer-data:/root/.naka:rw
     logging:
       driver: json-file
       options:
         max-size: "1m"
         max-file: "10"
-    
-  testnet-node2:
-    hostname: testnet-node2
-    container_name: testnet-node2
-    depends_on:
-      - testnet-bootnode
-    build:
-      context: ../
-      dockerfile: ./node/Dockerfile
-      args:
-        GENESIS_PATH: "./testnet/setup/genesis.json"
-        EXPOSED_PORTS: "8547 8548 30304"
-        CHAIN_ID: ${CHAIN_ID}
-        ADDRESS: ${NODE2_ADDRESS}
-        PRIVATE_KEY: ${NODE2_PRIVATE_KEY}
-        PASSWORD: ${NODE2_PASSWORD}
-    environment:
-      BOOTNODE_ID: "64b6b3687e748673f192c4967719677ef90e67083435364a85e714e870d343b93ebe8561cdff9d347db86af12aee490f9a2b012e4b80dc31e767b871fe6b7ea5"
-      BOOTNODE_IP: "172.25.0.101:30301"
-    networks:
-      testnet-net: 
-        ipv4_address: 172.25.0.103
-    ports:
-      - 8547:8545
-      - 8548:8546
-      - 30304:30303
-    volumes:
-      - testnet-node2-data:/root/.naka:rw
-    logging:
-      driver: json-file
-      options:
-        max-size: "1m"
-        max-file: "10"
-
-networks:
-  testnet-net:
-    driver: bridge
-    ipam:
-      config:
-      - subnet: 172.25.0.0/24
 
 volumes:
-  testnet-node1-data:
-  testnet-node2-data:
+  testnet-sealer-data:
