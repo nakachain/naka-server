@@ -7,6 +7,8 @@
     "eip155Block": 3,
     "eip158Block": 3,
     "byzantiumBlock": 4,
+    "nip2Block": 5,
+    "nip17Block": 6,
     "clique": {
       "period": 3,
       "epoch": 30000
