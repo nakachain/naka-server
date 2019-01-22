@@ -8,6 +8,12 @@ COPY ${GENESIS_PATH} /root/.naka/
 COPY ./script/init-genesis.sh /usr/local/bin
 RUN init-genesis.sh
 
+# Create env vars for shell script
+ARG BOOTNODES
+ARG CHAIN_ID
+ENV BOOTNODES=$BOOTNODES
+ENV CHAIN_ID=$CHAIN_ID
+
 # Run start script
 COPY ./client/start-client.sh /usr/local/bin
 ENTRYPOINT ["start-client.sh"]

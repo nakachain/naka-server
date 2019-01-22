@@ -16,4 +16,4 @@ geth \
 --wsorigins "*" \
 --wsapi db,debug,eth,net,web3 \
 --verbosity 4 \
---bootnodes "enode://$BOOTNODE_ID@$BOOTNODE_IP"
+--bootnodes "$BOOTNODES"

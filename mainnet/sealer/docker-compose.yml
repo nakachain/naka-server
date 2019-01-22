@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  mainnet-sealer:
+    hostname: mainnet-sealer
+    container_name: mainnet-sealer
+    build:
+      context: ../../
+      dockerfile: ./node/Dockerfile
+      args:
+        GENESIS_PATH: "./mainnet/genesis.json"
+        EXPOSED_PORTS: "8545 8546 30303"
+        BOOTNODES: ${BOOTNODES}
+        CHAIN_ID: ${CHAIN_ID}
+        ETHERBASE_ADDRESS: ${ETHERBASE_ADDRESS}
+        ADDRESS: ${ACCOUNT_ADDRESS}
+        PRIVATE_KEY: ${ACCOUNT_PRIVATE_KEY}
+        PASSWORD: ${ACCOUNT_PASSWORD}
+    network_mode: "host"
+    ports:
+      - 8545
+      - 8546
+      - 30303
+    volumes:
+      - mainnet-sealer-data:/root/.naka:rw
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "10"
+
+volumes:
+  mainnet-sealer-data:

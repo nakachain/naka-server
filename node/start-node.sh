@@ -7,11 +7,11 @@ geth \
 --nat=none \
 --targetgaslimit 4700000 \
 --rpc \
---rpcaddr 0.0.0.0 \
---rpccorsdomain "*" \
+--rpcaddr "127.0.0.1" \
+--rpccorsdomain "127.0.0.1" \
 --verbosity 4 \
 --mine \
---bootnodes "enode://$BOOTNODE_ID@$BOOTNODE_IP" \
---etherbase "$ADDRESS" \
+--bootnodes "$BOOTNODES" \
+--etherbase "$ETHERBASE_ADDRESS" \
 --unlock "$ADDRESS" \
 --password /root/.naka/.accountpw
