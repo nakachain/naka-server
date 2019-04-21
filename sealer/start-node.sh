@@ -11,7 +11,6 @@ geth \
 --rpccorsdomain "127.0.0.1" \
 --verbosity 4 \
 --mine \
---nodiscover \
 --bootnodes "$BOOTNODES" \
 --etherbase "$ETHERBASE_ADDRESS" \
 --unlock "$ADDRESS" \
