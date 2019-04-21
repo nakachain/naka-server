@@ -30,7 +30,7 @@ ENV ETHERBASE_ADDRESS=$ETHERBASE_ADDRESS
 ENV ADDRESS=$ADDRESS
 
 # Run start script
-COPY ./node/start-node.sh /usr/local/bin
+COPY ./sealer/start-node.sh /usr/local/bin
 ENTRYPOINT ["start-node.sh"]
 
 # Expose ports
