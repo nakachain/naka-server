@@ -3,6 +3,6 @@
 DIRECTORY="/root/.naka/geth"
 
 if [ ! -d "$DIRECTORY" ]; then
-    # Control will enter here if $DIRECTORY doesn't exist.
+    echo "Datadir not found, exec geth init"
     geth --datadir /root/.naka init /root/.naka/genesis.json
 fi
