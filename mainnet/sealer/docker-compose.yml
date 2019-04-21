@@ -17,10 +17,7 @@ services:
         ADDRESS: ${ACCOUNT_ADDRESS}
         PRIVATE_KEY: ${ACCOUNT_PRIVATE_KEY}
         PASSWORD: ${ACCOUNT_PASSWORD}
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
+    restart: on-failure
     network_mode: "host"
     ports:
       - 8545

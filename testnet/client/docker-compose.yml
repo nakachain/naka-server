@@ -13,10 +13,7 @@ services:
         EXPOSED_PORTS: "8545 8546 30303"
         BOOTNODES: ${BOOTNODES}
         CHAIN_ID: ${CHAIN_ID}
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
+    restart: on-failure
     ports:
       - 8545:8545
       - 8546:8546
