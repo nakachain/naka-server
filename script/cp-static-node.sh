@@ -17,16 +17,16 @@ TESTNET_CLIENT_VOL_NAME="testnet_testnet-client-data"
 echo "Copying static-node.json"
 
 # Validate network
-if [ $1 = "mainnet" ] && [ $2 = "sealer" ] then
+if [ $1 = "mainnet" -a $2 = "sealer" ] then
     get_mountpoint $MAINNET_SEALER_VOL_NAME
     sudo cp -r ./mainnet/static-nodes.json $MOUNTPOINT
-elif [ $1 = "mainnet" ] && [ $2 = "client" ] then
+elif [ $1 = "mainnet" -a $2 = "client" ] then
     get_mountpoint $MAINNET_CLIENT_VOL_NAME
     sudo cp -r ./mainnet/static-nodes.json $MOUNTPOINT
-elif [ $1 = "testnet" ] && [ $2 = "sealer" ] then
+elif [ $1 = "testnet" -a $2 = "sealer" ] then
     get_mountpoint $TESTNET_SEALER_VOL_NAME
     sudo cp -r ./testnet/static-nodes.json $MOUNTPOINT
-elif [ $1 = "testnet" ] && [ $2 = "client" ] then
+elif [ $1 = "testnet" -a $2 = "client" ] then
     get_mountpoint $TESTNET_CLIENT_VOL_NAME
     sudo cp -r ./testnet/static-nodes.json $MOUNTPOINT
 else
