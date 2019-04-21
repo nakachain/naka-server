@@ -10,7 +10,7 @@ COPY ${GENESIS_PATH} /root/.naka/
 
 # Run init genesis script
 COPY ./script/init-genesis.sh /usr/local/bin
-RUN init-genesis.sh
+# RUN init-genesis.sh
 
 # Create env vars for shell script
 ARG BOOTNODES
