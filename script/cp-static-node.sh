@@ -2,10 +2,10 @@
 #!/bin/sh
 
 MESSAGE="$ ./cp-static-node.sh [mainnet/testnet] [sealer/client]"
-MAINNET_SEALER_VOL_NAME="mainnet_mainnet-sealer-data"
-MAINNET_CLIENT_VOL_NAME="mainnet_mainnet-client-data"
-TESTNET_SEALER_VOL_NAME="testnet_testnet-sealer-data"
-TESTNET_CLIENT_VOL_NAME="testnet_testnet-client-data"
+MAINNET_SEALER_VOL_NAME="sealer_mainnet-sealer-data"
+MAINNET_CLIENT_VOL_NAME="client_mainnet-client-data"
+TESTNET_SEALER_VOL_NAME="sealer_testnet-sealer-data"
+TESTNET_CLIENT_VOL_NAME="client_testnet-client-data"
 
 display_error_msg () {
     echo "invalid network or node type"
