@@ -1,12 +1,16 @@
 FROM nakachain/go-naka:v1.4.1
 
+# Copy static-nodes.json
+ARG STATIC_NODE_PATH
+COPY ${STATIC_NODE_PATH} /root/.naka/geth
+
 # Copy genesis.json
 ARG GENESIS_PATH
 COPY ${GENESIS_PATH} /root/.naka/
 
 # Run init genesis script
 COPY ./script/init-genesis.sh /usr/local/bin
-RUN init-genesis.sh
+# RUN init-genesis.sh
 
 # Import account
 ARG PRIVATE_KEY
@@ -26,7 +30,7 @@ ENV ETHERBASE_ADDRESS=$ETHERBASE_ADDRESS
 ENV ADDRESS=$ADDRESS
 
 # Run start script
-COPY ./node/start-node.sh /usr/local/bin
+COPY ./sealer/start-node.sh /usr/local/bin
 ENTRYPOINT ["start-node.sh"]
 
 # Expose ports

@@ -6,8 +6,9 @@ services:
     container_name: mainnet-sealer
     build:
       context: ../../
-      dockerfile: ./node/Dockerfile
+      dockerfile: ./sealer/Dockerfile
       args:
+        STATIC_NODE_PATH: "./mainnet/static-nodes.json"
         GENESIS_PATH: "./mainnet/genesis.json"
         EXPOSED_PORTS: "8545 8546 30303"
         BOOTNODES: ${BOOTNODES}
@@ -16,6 +17,7 @@ services:
         ADDRESS: ${ACCOUNT_ADDRESS}
         PRIVATE_KEY: ${ACCOUNT_PRIVATE_KEY}
         PASSWORD: ${ACCOUNT_PASSWORD}
+    restart: on-failure
     network_mode: "host"
     ports:
       - 8545
