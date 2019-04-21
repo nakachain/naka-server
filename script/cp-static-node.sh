@@ -25,11 +25,11 @@ if [ "$1" = "mainnet" ]; then
     if [ "$2" = "sealer" ]; then
         echo "Copying static-node.json to mainnet sealer"
         get_mountpoint $MAINNET_SEALER_VOL_NAME
-        sudo cp -r ../mainnet/static-nodes.json $MOUNTPOINT
+        sudo cp -r ../mainnet/static-nodes.json "${MOUNTPOINT}/geth"
     elif [ "$2" = "client" ]; then
         echo "Copying static-node.json to mainnet client"
         get_mountpoint $MAINNET_CLIENT_VOL_NAME
-        sudo cp -r ../mainnet/static-nodes.json $MOUNTPOINT
+        sudo cp -r ../mainnet/static-nodes.json "${MOUNTPOINT}/geth"
     else
         display_error_msg
     fi
@@ -37,11 +37,11 @@ elif [ "$1" = "testnet" ]; then
     if [ "$2" = "sealer" ]; then
         echo "Copying static-node.json to testnet sealer"
         get_mountpoint $TESTNET_SEALER_VOL_NAME
-        sudo cp -r ../testnet/static-nodes.json $MOUNTPOINT
+        sudo cp -r ../testnet/static-nodes.json "${MOUNTPOINT}/geth"
     elif [ "$2" = "client" ]; then
         echo "Copying static-node.json to testnet client"
         get_mountpoint $TESTNET_CLIENT_VOL_NAME
-        sudo cp -r ../testnet/static-nodes.json $MOUNTPOINT
+        sudo cp -r ../testnet/static-nodes.json "${MOUNTPOINT}/geth"
     else
         display_error_msg
     fi
