@@ -6,7 +6,7 @@ services:
     container_name: mainnet-sealer
     build:
       context: ../../
-      dockerfile: ./node/Dockerfile
+      dockerfile: ./sealer/Dockerfile
       args:
         GENESIS_PATH: "./mainnet/genesis.json"
         EXPOSED_PORTS: "8545 8546 30303"

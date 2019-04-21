@@ -6,7 +6,7 @@ services:
     container_name: testnet-sealer
     build:
       context: ../../
-      dockerfile: ./node/Dockerfile
+      dockerfile: ./sealer/Dockerfile
       args:
         GENESIS_PATH: "./testnet/genesis.json"
         EXPOSED_PORTS: "8545 8546 30303"
