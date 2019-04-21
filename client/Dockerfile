@@ -1,5 +1,9 @@
 FROM nakachain/go-naka:v1.4.1
 
+# Copy static-nodes.json
+ARG STATIC_NODE_PATH
+COPY ${STATIC_NODE_PATH} /root/.naka/geth
+
 # Copy genesis.json
 ARG GENESIS_PATH
 COPY ${GENESIS_PATH} /root/.naka/
