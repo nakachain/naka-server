@@ -4,6 +4,9 @@
 
 $DATADIR="${HOME}/.naka"
 
+# Make dir if needed
+mkdir -p $DATADIR
+
 # Create genesis block
 geth --datadir $DATADIR init $1
 
