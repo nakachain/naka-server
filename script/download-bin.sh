@@ -17,9 +17,8 @@ rm bootnode.zip
 
 # Fetch and unzip geth
 echo "Downloading geth"
-wget "https://github.com/nakachain/go-naka-release/releases/download/$CURRENT_VERSION/geth.zip"
-echo "Unzipping geth"
-unzip geth.zip
+wget "https://github.com/nakachain/go-naka-release/releases/download/$CURRENT_VERSION/geth-linux-amd64"
+mv geth-linux-amd64 geth
 chmod 755 geth
 sudo mv geth /usr/local/bin
 rm geth.zip
