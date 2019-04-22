@@ -9,7 +9,7 @@ geth \
 --rpc \
 --rpcaddr "127.0.0.1" \
 --rpccorsdomain "127.0.0.1" \
---verbosity 5 \
+--verbosity 4 \
 --mine \
 --bootnodes "$BOOTNODES" \
 --etherbase "$ETHERBASE_ADDRESS" \
