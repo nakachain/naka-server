@@ -1,7 +1,7 @@
 #!/bin/sh
 
 geth \
---datadir /root/.naka \
+--datadir "$HOME/.naka" \
 --syncmode full \
 --networkid "$CHAIN_ID" \
 --nat=none \
@@ -12,6 +12,6 @@ geth \
 --verbosity 5 \
 --mine \
 --bootnodes "$BOOTNODES" \
---etherbase "$ETHERBASE_ADDRESS" \
---unlock "$ADDRESS" \
---password /root/.naka/.accountpw
+--etherbase "$ACCOUNT_ADDRESS" \
+--unlock "$ACCOUNT_ADDRESS" \
+--password "$ACCOUNT_PW_PATH"
