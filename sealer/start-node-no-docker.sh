@@ -1,7 +1,9 @@
 #!/bin/sh
 
+LOGS_DIR=$HOME/.naka/logs
+
 # Create logs dir
-mkdir -p ../../logs
+mkdir -p "$LOGS_DIR"
 
 # Start geth
 nohup \
@@ -20,4 +22,4 @@ geth \
 --etherbase "$ACCOUNT_ADDRESS" \
 --unlock "$ACCOUNT_ADDRESS" \
 --password "$ACCOUNT_PW_PATH" \
->> ../../logs/geth.log &
+>> "$LOGS_DIR/geth.log" &
