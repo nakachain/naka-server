@@ -1,3 +1,3 @@
 #!/bin/sh
 
-geth attach ipc:~/.naka/geth.ipc
+geth attach ipc:$HOME/.naka/geth.ipc
