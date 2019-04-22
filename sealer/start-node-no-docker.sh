@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Create logs dir
-mkdir -p ../logs
+mkdir -p ../../logs
 
 # Start geth
 nohup \
@@ -20,4 +20,4 @@ geth \
 --etherbase "$ACCOUNT_ADDRESS" \
 --unlock "$ACCOUNT_ADDRESS" \
 --password "$ACCOUNT_PW_PATH" \
->> ../logs/geth.log &
+>> ../../logs/geth.log &
