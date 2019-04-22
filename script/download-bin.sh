@@ -10,14 +10,16 @@ sudo apt-get install unzip
 echo "Downloading bootnode"
 wget "https://github.com/nakachain/go-naka-release/releases/download/$CURRENT_VERSION/bootnode.zip"
 echo "Unzipping bootnode"
-sudo unzip -o bootnode.zip /usr/local/bin
-sudo chmod 755 /usr/local/bin/bootnode
+unzip bootnode.zip
+chmod 755 bootnode
+sudo mv bootnode /usr/local/bin
 rm bootnode.zip
 
 # Fetch and unzip geth
 echo "Downloading geth"
 wget "https://github.com/nakachain/go-naka-release/releases/download/$CURRENT_VERSION/geth.zip"
 echo "Unzipping geth"
-sudo unzip -o geth.zip /usr/local/bin
-sudo chmod 755 /usr/local/bin/geth
+unzip geth.zip
+chmod 755 geth
+sudo mv geth /usr/local/bin
 rm geth.zip
