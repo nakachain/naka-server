@@ -2,10 +2,10 @@
 # Initializes a new node
 # ./init-account.sh $GENESIS_FILE $PW_FILE $PRIVKEY_FILE $STATICNODE_FILE
 
-$DATADIR=${HOME}/.naka
+$DATADIR=~/.naka
 
 # Make dir if needed
-mkdir -p $DATADIR
+mkdir $DATADIR
 
 # Create genesis block
 geth --datadir $DATADIR init $1
