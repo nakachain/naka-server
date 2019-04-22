@@ -2,7 +2,7 @@
 # Initializes a new node
 # ./init-account.sh $GENESIS_FILE $PW_FILE $PRIVKEY_FILE $STATICNODE_FILE
 
-$DATADIR=~/.naka
+$DATADIR="$HOME/.naka"
 
 # Make dir if needed
 mkdir "$DATADIR"
