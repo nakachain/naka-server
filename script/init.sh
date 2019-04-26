@@ -15,7 +15,7 @@ if [ ! -z "$LOG_DIR" ] && [ ! -d "$LOG_DIR" ]; then
 fi
 
 # Create genesis block
-if [ ! -z "$DATA_DIR" ] && [ ! -z "$GENESIS_FILE" ]; then
+if [ ! -z "$DATA_DIR" ] && [ ! -z "$GENESIS_FILE" ] && [ ! -d "$DATA_DIR" ]; then
     echo "Init genesis block"
     geth --datadir "$DATA_DIR" init "$GENESIS_FILE"
 fi
