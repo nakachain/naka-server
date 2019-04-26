@@ -17,7 +17,7 @@ fi
 # Create genesis block
 if [ ! -z "$DATA_DIR" ] && [ ! -z "$GENESIS_FILE" ] && [ ! -d "$DATA_DIR/chaindata" ]; then
     echo "Init genesis block"
-    geth --datadir "$DATA_DIR" init "$GENESIS_FILE"
+    geth --datadir $DATA_DIR init $GENESIS_FILE
 fi
 
 # Imports to the account to the datadir
