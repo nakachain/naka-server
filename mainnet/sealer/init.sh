@@ -1,2 +1,2 @@
 #!/bin/sh
-../../script/init.sh ../genesis.json .accountpw .accountpk ../static-nodes.json
+export $(cat .env | xargs) && ../../script/init.sh
