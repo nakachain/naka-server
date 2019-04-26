@@ -1,14 +1,8 @@
 #!/bin/sh
 
-LOGS_DIR=$HOME/.naka/logs
-
-# Create logs dir
-mkdir -p "$LOGS_DIR"
-
-# Start geth
 nohup \
 geth \
---datadir "$HOME/.naka" \
+--datadir "$DATA_DIR" \
 --syncmode full \
 --networkid "$CHAIN_ID" \
 --nat=none \
@@ -21,5 +15,5 @@ geth \
 --bootnodes "$BOOTNODES" \
 --etherbase "$ACCOUNT_ADDRESS" \
 --unlock "$ACCOUNT_ADDRESS" \
---password "$ACCOUNT_PW_PATH" \
->> "$LOGS_DIR/geth.log" &
+--password "$PW_FILE" \
+>> "$LOG_DIR/geth.log" &
