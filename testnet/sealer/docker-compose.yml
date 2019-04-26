@@ -6,7 +6,7 @@ services:
     container_name: testnet-sealer
     build:
       context: ../../
-      dockerfile: ./sealer/Dockerfile
+      dockerfile: ./node-sealer/Dockerfile
       args:
         STATIC_NODE_PATH: "./testnet/static-nodes.json"
         GENESIS_PATH: "./testnet/genesis.json"

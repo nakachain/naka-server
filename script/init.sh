@@ -1,17 +1,33 @@
 #!/bin/sh
 # Initializes a new node
-# ./init-account.sh $GENESIS_FILE $PW_FILE $PRIVKEY_FILE $STATICNODE_FILE
+# Inject env args before calling script
 
-DATADIR=$HOME/.naka
+# Make data dir if needed
+if [ ! -z "$DATA_DIR" ] && [ ! -d "$DATA_DIR" ]; then
+    echo "Creating data dir"
+    mkdir -p "$DATA_DIR"
+fi
 
-# Make dir if needed
-mkdir "$DATADIR"
+# Make logs dir if needed
+if [ ! -z "$LOG_DIR" ] && [ ! -d "$LOG_DIR" ]; then
+    echo "Creating log dir"
+    mkdir -p "$LOG_DIR"
+fi
 
 # Create genesis block
-geth --datadir "$DATADIR" init $1
+if [ ! -z "$DATA_DIR" ] && [ ! -z "$GENESIS_FILE" ]; then
+    echo "Init genesis block"
+    geth --datadir "$DATA_DIR" init "$GENESIS_FILE"
+fi
 
 # Imports to the account to the datadir
-geth --datadir "$DATADIR" account import --password $2 $3
+if [ ! -z "$DATA_DIR" ] && [ ! -z "$PW_FILE" ] && [ ! -z "$PRIV_KEY_FILE" ]; then
+    echo "Importing account"
+    geth --datadir "$DATA_DIR" account import --password "$PW_FILE" "$PRIV_KEY_FILE"
+fi
 
 # Copy static-nodes.json to data dir
-cp $4 "$DATADIR/geth"
+if [ ! -z "$STATIC_NODE_FILE" ] && [ ! -z "$DATA_DIR" ]; then
+    echo "Copying static-node.json"
+    cp "$STATIC_NODE_FILE" "$DATA_DIR/geth"
+fi

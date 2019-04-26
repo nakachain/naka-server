@@ -3,10 +3,10 @@
 CURRENT_VERSION=v1.5.0
 
 # Fetch and unzip bootnode
-echo "Downloading bootnode"
-wget "https://github.com/nakachain/go-naka-release/releases/download/$CURRENT_VERSION/bootnode"
-chmod 755 bootnode
-sudo mv bootnode /usr/local/bin
+# echo "Downloading bootnode"
+# wget "https://github.com/nakachain/go-naka-release/releases/download/$CURRENT_VERSION/bootnode"
+# chmod 755 bootnode
+# sudo mv bootnode /usr/local/bin
 
 # Fetch and unzip geth
 echo "Downloading geth"
