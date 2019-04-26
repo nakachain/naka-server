@@ -6,7 +6,7 @@ services:
     container_name: testnet-client
     build:
       context: ../../
-      dockerfile: ./client/Dockerfile
+      dockerfile: ./node-client/Dockerfile
       args:
         STATIC_NODE_PATH: "./testnet/static-nodes.json"
         GENESIS_PATH: "./testnet/genesis.json"

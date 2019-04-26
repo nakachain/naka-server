@@ -19,7 +19,7 @@ ENV BOOTNODES=$BOOTNODES
 ENV CHAIN_ID=$CHAIN_ID
 
 # Run start script
-COPY ./client/start-client.sh /usr/local/bin
+COPY ./node-client/start-client.sh /usr/local/bin
 ENTRYPOINT ["start-client.sh"]
 
 # Expose ports

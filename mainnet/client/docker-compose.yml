@@ -6,7 +6,7 @@ services:
     container_name: mainnet-client
     build:
       context: ../../
-      dockerfile: ./client/Dockerfile
+      dockerfile: ./node-client/Dockerfile
       args:
         STATIC_NODE_PATH: "./mainnet/static-nodes.json"
         GENESIS_PATH: "./mainnet/genesis.json"
