@@ -12,10 +12,7 @@ fi
 if [ ! -z "$LOG_DIR" ] && [ ! -d "$LOG_DIR" ]; then
     echo "Setting up logging..."
     sudo mkdir -p "$LOG_DIR"
-
-    # Route geth syslogs to own log file
-    sudo cp geth.conf /etc/rsyslog.d
-    sudo chown syslog:adm "$LOG_DIR/geth.log"
+    sudo touch "$LOG_DIR/geth.log"
 fi
 
 # Create genesis block
@@ -42,3 +39,26 @@ if [ ! -f "$SERVICE_FILE" ]; then
     sudo cp "$SERVICE_FILE" /etc/systemd/system 
     sudo systemctl enable geth.service
 fi
+
+# Route geth syslogs to separate log file
+if [ ! -f "/etc/rsyslog.d/geth.conf" ]; then
+    sudo cp geth.conf /etc/rsyslog.d
+    sudo chown syslog:adm "$LOG_DIR/geth.log"
+fi
+
+# Setup log rotation
+if grep -R "/var/log/geth/geth.log" /etc/logrotate.conf > /dev/null
+then
+else
+    echo -e "\n/var/log/geth/geth.log {\
+        \n\tmissingok\
+        \n\tdaily\
+        \n\tcreate 0644 syslog adm\
+        \n\tsize 100M\
+        \n\tcopytruncate\
+        \n\tmaxage 14\
+        \n\trotate 9\
+        \n}" >> /etc/logrotate.conf
+fi
+
+echo "Node init finished!"
