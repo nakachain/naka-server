@@ -10,9 +10,10 @@ fi
 
 # Setup logging
 if [ ! -z "$LOG_DIR" ] && [ ! -d "$LOG_DIR" ]; then
-    echo "Setting up logging..."
+    echo "Setting up log dir..."
     sudo mkdir -p "$LOG_DIR"
     sudo touch "$LOG_DIR/geth.log"
+    sudo chown syslog:adm "$LOG_DIR/geth.log"
 fi
 
 # Create genesis block
@@ -43,8 +44,7 @@ fi
 # Route geth syslogs to separate log file
 if [ ! -f "/etc/rsyslog.d/geth.conf" ]; then
     echo "Routing geth logs..."
-    sudo cp geth.conf /etc/rsyslog.d
-    sudo chown syslog:adm "$LOG_DIR/geth.log"
+    sudo cp "$SYSLOG_CONF_FILE" /etc/rsyslog.d
 fi
 
 # Setup log rotation
