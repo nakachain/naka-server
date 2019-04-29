@@ -46,6 +46,7 @@ fi
 if [ ! -f "/etc/rsyslog.d/geth.conf" ]; then
     echo "Routing geth logs..."
     sudo cp "$SYSLOG_CONF_FILE" /etc/rsyslog.d
+    sudo systemctl restart rsyslog
 fi
 
 # Setup log rotation
