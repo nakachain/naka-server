@@ -51,7 +51,7 @@ fi
 # Setup log rotation
 if [ $(cat /etc/logrotate.conf | grep -c "/var/log/geth/geth.log") -eq 0 ]; then
     echo "Setting up log rotation..."
-    echo -e "\n\
+    echo "\n\
         /var/log/geth/geth.log {\n\t\
         missingok\n\t\
         daily\n\t\
