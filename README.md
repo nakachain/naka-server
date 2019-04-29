@@ -2,6 +2,10 @@
 
 This repo contains all the necessary Docker config and scripts to run [Nakachain](https://github.com/nakachain/go-naka) nodes.
 
+## Requirements
+
+1. Linux-based AMD64 arch type OS
+
 ## New Node Setup (Linux)
 
 1. Clone repo
@@ -25,6 +29,18 @@ This repo contains all the necessary Docker config and scripts to run [Nakachain
 8. `./start.sh` to start the node
 9. Note that the geth system service is now setup to auto-run on reboots.
 
+## Check Node Status
+
+To check the geth system service status, run `systemctl status geth`.
+
+## Stopping Node
+
+To stop your running node, run `/script/stop.sh`.
+
 ## Attach Geth Console
 
-To attach to your runnning node, run `attach.sh [mainnet/testnet]` in `/script`.
+To attach to your runnning node, run `/script/attach.sh [mainnet/testnet]`.
+
+## Logging
+
+Logs are stored and rotated in `/var/log/geth/geth.log`.
