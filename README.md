@@ -10,7 +10,7 @@ This repo contains all the necessary config and scripts to run [Nakachain](https
 2. Dual-core CPU
 3. 2 GB RAM
 
-### New Node Setup (Linux)
+### New Node Setup
 
 1. Clone repo
 2. `cd naka-server/script`
