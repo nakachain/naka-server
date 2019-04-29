@@ -2,17 +2,19 @@
 
 This repo contains all the necessary Docker config and scripts to run [Nakachain](https://github.com/nakachain/go-naka) nodes.
 
-## Requirements
+## Linux AMD64 OS
+
+### Requirements
 
 1. Linux-based AMD64 arch type OS
 
-## New Node Setup (Linux)
+### New Node Setup (Linux)
 
 1. Clone repo
 2. `cd naka-server/script`
-3. `./download-bin.sh`
+3. Download the required binaries: `./download-bin.sh`
 4. `cd ../[mainnet/testnet]/[sealer/client]`
-5. Create env file with `vim .env`:
+5. Create env file: `vim .env`
 
         # Example .env for mainnet client
         CHAIN_ID=2019
@@ -24,23 +26,35 @@ This repo contains all the necessary Docker config and scripts to run [Nakachain
         GENESIS_FILE=/home/ubuntu/naka-server/mainnet/genesis.json
         STATIC_NODE_FILE=/home/ubuntu/naka-server/mainnet/static-nodes.json
 
-6. Run init script: `./init.sh`. This creates a Linux system service.
+6. Run init script: `./init.sh`. This creates a Linux system service for geth among other necessary setup.
 7. `cd ../../script`
 8. `./start.sh` to start the node
 9. Note that the geth system service is now setup to auto-run on reboots.
 
-## Check Node Status
+### Start Node
 
-To check the geth system service status, run `systemctl status geth`.
+```bash
+/script/start.sh
+```
 
-## Stopping Node
+### Stop Node
 
-To stop your running node, run `/script/stop.sh`.
+```bash
+/script/stop.sh
+```
 
-## Attach Geth Console
+### Check Node Status
 
-To attach to your runnning node, run `/script/attach.sh [mainnet/testnet]`.
+```bash
+systemctl status geth
+```
 
-## Logging
+### Attach Geth Console
+
+```bash
+/script/attach.sh [mainnet/testnet]
+```
+
+### Logging
 
 Logs are stored and rotated in `/var/log/geth/geth.log`.
