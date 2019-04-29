@@ -4,9 +4,11 @@ This repo contains all the necessary config and scripts to run [Nakachain](https
 
 ## Linux AMD64 OS
 
-### Requirements
+### Minimum Requirements
 
 1. Linux-based AMD64 arch type OS
+2. Dual-core CPU
+3. 2 GB RAM
 
 ### New Node Setup (Linux)
 
