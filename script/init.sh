@@ -60,7 +60,7 @@ if [ $(cat /etc/logrotate.conf | grep -c "/var/log/geth/geth.log") -eq 0 ]; then
         copytruncate\n\t\
         maxage 14\n\t\
         rotate 9\n\
-        }" | sudo tee /etc/logrotate.conf
+        }" | sudo tee -a /etc/logrotate.conf
 fi
 
 echo "Node init finished!"
