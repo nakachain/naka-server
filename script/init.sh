@@ -35,7 +35,7 @@ if [ ! -z "$STATIC_NODE_FILE" ] && [ ! -z "$DATA_DIR" ]; then
 fi
 
 # Create geth systemd service
-if [ ! -f "$SERVICE_FILE" ]; then
+if [ ! -f "/etc/systemd/system/geth.service" ]; then
     echo "Creating geth service..."
     sudo cp "$SERVICE_FILE" /etc/systemd/system 
     sudo systemctl enable geth.service
@@ -48,9 +48,7 @@ if [ ! -f "/etc/rsyslog.d/geth.conf" ]; then
 fi
 
 # Setup log rotation
-if grep -R "/var/log/geth/geth.log" /etc/logrotate.conf > /dev/null
-then
-else
+if [ $(cat /etc/logrotate.conf | grep -c "/var/log/geth/geth.log") -eq 0 ]; then
     echo "Setting up log rotation..."
     echo -e "\n\
         /var/log/geth/geth.log {\n\t\
