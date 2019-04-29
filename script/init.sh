@@ -42,6 +42,7 @@ fi
 
 # Route geth syslogs to separate log file
 if [ ! -f "/etc/rsyslog.d/geth.conf" ]; then
+    echo "Routing geth logs..."
     sudo cp geth.conf /etc/rsyslog.d
     sudo chown syslog:adm "$LOG_DIR/geth.log"
 fi
@@ -50,15 +51,17 @@ fi
 if grep -R "/var/log/geth/geth.log" /etc/logrotate.conf > /dev/null
 then
 else
-    echo -e "\n/var/log/geth/geth.log {\
-        \n\tmissingok\
-        \n\tdaily\
-        \n\tcreate 0644 syslog adm\
-        \n\tsize 100M\
-        \n\tcopytruncate\
-        \n\tmaxage 14\
-        \n\trotate 9\
-        \n}" >> /etc/logrotate.conf
+    echo "Setting up log rotation..."
+    echo -e "\n\
+        /var/log/geth/geth.log {\n\t\
+        missingok\n\t\
+        daily\n\t\
+        create 0644 syslog adm\n\t\
+        size 100M\n\t\
+        copytruncate\n\t\
+        maxage 14\n\t\
+        rotate 9\n\
+        }" >> /etc/logrotate.conf
 fi
 
 echo "Node init finished!"
