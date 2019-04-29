@@ -52,15 +52,15 @@ fi
 if [ $(cat /etc/logrotate.conf | grep -c "/var/log/geth/geth.log") -eq 0 ]; then
     echo "Setting up log rotation..."
     echo "\n\
-        /var/log/geth/geth.log {\n\
-        missingok\n\
-        daily\n\
-        create 0644 syslog adm\n\
-        size 100M\n\
-        copytruncate\n\
-        maxage 14\n\
-        rotate 9\n\
-        }" | sudo tee -a /etc/logrotate.conf
+    /var/log/geth/geth.log {\n\t\
+    missingok\n\t\
+    daily\n\t\
+    create 0644 syslog adm\n\t\
+    size 100M\n\t\
+    copytruncate\n\t\
+    maxage 14\n\t\
+    rotate 9\n\
+    }" | sudo tee -a /etc/logrotate.conf
 fi
 
 echo "Node init finished!"
