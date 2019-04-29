@@ -1,5 +1,22 @@
 #!/bin/sh
-until /home/ubuntu/naka-server/testnet/sealer/start.sh; do
-    echo "Server crashed with exit code $?. Respawning..." >&2
+while [ true ]; do
+    nohup \
+    geth \
+    --datadir "$DATA_DIR" \
+    --syncmode full \
+    --networkid "$CHAIN_ID" \
+    --nat=none \
+    --targetgaslimit 4700000 \
+    --rpc \
+    --rpcaddr "127.0.0.1" \
+    --rpccorsdomain "127.0.0.1" \
+    --verbosity 4 \
+    --mine \
+    --bootnodes "$BOOTNODES" \
+    --etherbase "$ACCOUNT_ADDRESS" \
+    --unlock "$ACCOUNT_ADDRESS" \
+    --password "$PW_FILE" \
+    >> "$LOG_DIR/geth.log" &
+
     sleep 1
 done
