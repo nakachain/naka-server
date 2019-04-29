@@ -1,6 +1,5 @@
 #!/bin/sh
-while [ true ]
-do
-    export $(cat .env | xargs) && ../../node-sealer/start-node-nohup.sh
+until start.sh; do
+    echo "Server crashed with exit code $?. Respawning..." >&2
     sleep 1
 done
