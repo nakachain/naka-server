@@ -16,4 +16,4 @@ geth \
 --etherbase "$ACCOUNT_ADDRESS" \
 --unlock "$ACCOUNT_ADDRESS" \
 --password "$PW_FILE" \
->> "$LOG_DIR/geth.log" &
+&
