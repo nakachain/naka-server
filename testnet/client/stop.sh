@@ -1,2 +1,2 @@
 #!/bin/sh
-pkill geth
+sudo systemctl stop geth

@@ -18,4 +18,4 @@ geth \
 --wsapi db,debug,eth,net,web3 \
 --verbosity 4 \
 --bootnodes "$BOOTNODES" \
->> "$LOG_DIR/geth.log" &
+&
