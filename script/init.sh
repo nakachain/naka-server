@@ -37,8 +37,9 @@ fi
 # Create geth systemd service
 if [ ! -f "/etc/systemd/system/geth.service" ]; then
     echo "Creating geth service..."
-    sudo cp "$SERVICE_FILE" /etc/systemd/system 
+    sudo cp "$SERVICE_FILE" /etc/systemd/system
     sudo systemctl enable geth.service
+    sudo systemctl daemon-reload
 fi
 
 # Route geth syslogs to separate log file
