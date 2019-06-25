@@ -40,6 +40,12 @@ fi
 # Imports the env file
 export $(cat "$ENV_FILE" | xargs)
 
+# Ensure DATA_DIR was set in env
+if [ -z "$DATA_DIR" ]; then
+    echo "DATA_DIR not found in env file"
+    exit 2
+fi
+
 # Setup data dir
 if [ ! -z "$DATA_DIR" ] && [ ! -d "$DATA_DIR" ]; then
     echo "Setting up data dir..."
