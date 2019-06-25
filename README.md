@@ -2,15 +2,13 @@
 
 This repo contains all the necessary config and scripts to run [Nakachain](https://github.com/nakachain/go-naka) nodes.
 
-## Linux AMD64 OS
-
-### Minimum Requirements
+## Minimum Requirements
 
 1. Linux-based AMD64 arch type OS
 2. Dual-core CPU
 3. 2 GB RAM
 
-### New Node Setup
+## New Node Setup
 
 1. Clone repo
 2. `cd naka-server/script`
@@ -31,32 +29,56 @@ This repo contains all the necessary config and scripts to run [Nakachain](https
 6. Run init script: `./init.sh`. This creates a Linux system service for geth among other necessary setup.
 7. `cd ../../script`
 8. `./start.sh` to start the node
-9. Note that the geth system service is now setup to auto-run on reboots.
 
-### Start Node
+**Note: all system services automatically auto-run on reboots.**
+
+## Logging
+
+The different log files are located at:
+
+```text
+/var/log/geth/mainnet/geth.log
+/var/log/geth/testnet/geth.log
+/var/log/geth/mainnet/bootnode.log
+/var/log/geth/testnet/bootnode.log
+```
+
+### Setup Automatic Log Rotation
+
+For adding automatic log rotations, open `/etc/logrotate.conf` and add the following:
+
+```text
+/var/log/geth/mainnet/geth.log {
+    missingok
+    daily
+    create 0644 syslog adm
+    size 100M
+    copytruncate
+    maxage 14
+    rotate 9
+}
+```
+
+## Start Node
 
 ```bash
 sudo systemctl start geth
 ```
 
-### Stop Node
+## Stop Node
 
 ```bash
 sudo systemctl stop geth
 ```
 
-### Check Node Status
+## Check Node Status
 
 ```bash
 systemctl status geth
 ```
 
-### Attach Geth Console
+## Attach Geth Console
 
 ```bash
-/script/attach.sh [mainnet/testnet]
+/script/attach.sh [mainnet|testnet]
 ```
-
-### Logging
-
-Logs are stored and rotated in `/var/log/geth/geth.log`.

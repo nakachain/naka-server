@@ -148,10 +148,4 @@ if [ ! -z "$BOOTNODE_KEY" ]; then
     sudo systemctl restart rsyslog
 fi
 
-# Setup log rotation
-if [ $(cat /etc/logrotate.conf | grep -c "/var/log/geth/geth.log") -eq 0 ]; then
-    echo "Setting up log rotation..."
-    echo "\n/var/log/geth/geth.log {\n    missingok\n    daily\n    create 0644 syslog adm\n    size 100M\n    copytruncate\n    maxage 14\n    rotate 9\n}" | sudo tee -a /etc/logrotate.conf
-fi
-
-echo "Node init finished!"
+echo "Node initialization finished!"
