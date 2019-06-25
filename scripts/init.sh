@@ -1,9 +1,9 @@
 #!/bin/sh
 # Initializes a new node
 
-ERR_MESSAGE="$ ./init.sh /path/to/.env [mainnet|testnet] [sealer|client]"
+ERR_MESSAGE="$ ./init.sh /path/to/.env"
 
-# Env path validation
+# Env file validation
 ENV_FILE=$1
 if [ -z "$ENV_FILE" ]; then
     echo "env file not given"
@@ -11,34 +11,28 @@ if [ -z "$ENV_FILE" ]; then
     exit 2
 fi
 
+# Imports the env file
+export $(cat "$ENV_FILE" | xargs)
+
 # Network validation
-NETWORK=$2
 if [ -z "$NETWORK" ]; then
-    echo "network not given"
-    echo $ERR_MESSAGE
+    echo "network not defined: [mainnet|testnet]"
     exit 2
 fi
 if [ "$NETWORK" != "mainnet" ] && [ "$NETWORK" != "testnet" ]; then
-    echo "invalid network"
-    echo $ERR_MESSAGE
+    echo "invalid network: [mainnet|testnet]"
     exit 2
 fi
 
 # Node type validation
-NODE_TYPE=$3
 if [ -z "$NODE_TYPE" ]; then
-    echo "node type not given"
-    echo $ERR_MESSAGE
+    echo "node type not defined: [sealer|client]"
     exit 2
 fi
 if [ "$NODE_TYPE" != "sealer" ] && [ "$NODE_TYPE" != "client" ]; then
-    echo "invalid node type"
-    echo $ERR_MESSAGE
+    echo "invalid node type: [sealer|client]"
     exit 2
 fi
-
-# Imports the env file
-export $(cat "$ENV_FILE" | xargs)
 
 # Ensure DATA_DIR was set in env
 if [ -z "$DATA_DIR" ]; then
