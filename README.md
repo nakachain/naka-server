@@ -36,13 +36,13 @@ This repo contains all the necessary config and scripts to run [Nakachain](https
 ### Start Node
 
 ```bash
-/script/start.sh
+sudo systemctl start geth
 ```
 
 ### Stop Node
 
 ```bash
-/script/stop.sh
+sudo systemctl stop geth
 ```
 
 ### Check Node Status
