@@ -128,16 +128,24 @@ fi
 sudo systemctl daemon-reload
 
 # Route geth syslogs to separate log file
-if [ ! -z "$GETH_LOG_CONFIG" ]; then
-    echo "Routing geth logs..."
-    sudo cp "$GETH_LOG_CONFIG" /etc/rsyslog.d
-    sudo systemctl restart rsyslog
+if [ "$NETWORK" == "mainnet" ]; then
+    echo "Routing geth_mainnet logs..."
+    sudo cp ../logging/geth_mainnet.conf /etc/rsyslog.d
+else
+    echo "Routing geth_testnet logs..."
+    sudo cp ../logging/geth_testnet.conf /etc/rsyslog.d
 fi
+sudo systemctl restart rsyslog
 
 # Route bootnode syslogs to separate log file
-if [ ! -z "$BOOTNODE_LOG_CONFIG" ]; then
-    echo "Routing bootnode logs..."
-    sudo cp "$BOOTNODE_LOG_CONFIG" /etc/rsyslog.d
+if [ ! -z "$BOOTNODE_KEY" ]; then
+    if [ "$NETWORK" == "mainnet" ]; then
+        echo "Routing bootnode_mainnet logs..."
+        sudo cp ../logging/bootnode_mainnet.conf /etc/rsyslog.d
+    else
+        echo "Routing bootnode_testnet logs..."
+        sudo cp ../logging/bootnode_testnet.conf /etc/rsyslog.d
+    fi
     sudo systemctl restart rsyslog
 fi
 
