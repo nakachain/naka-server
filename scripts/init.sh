@@ -74,9 +74,13 @@ if [ ! -z "$DATA_DIR" ] && [ ! -z "$PW_FILE" ] && [ ! -z "$PK_FILE" ]; then
 fi
 
 # Copy static-nodes.json to data dir
-if [ ! -z "$STATIC_NODE_FILE" ] && [ ! -z "$DATA_DIR" ]; then
+if [ ! -z "$DATA_DIR" ]; then
     echo "Copying static-node.json..."
-    cp "$STATIC_NODE_FILE" "$DATA_DIR/geth"
+    if [ "$NETWORK" == "mainnet" ]; then
+        cp ../metadata/mainnet/static-nodes.json "$DATA_DIR/geth"
+    else
+        cp ../metadata/testnet/static-nodes.json "$DATA_DIR/geth"
+    fi
 fi
 
 # Create bootnode systemd service
