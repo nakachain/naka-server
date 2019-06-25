@@ -3,22 +3,36 @@
 
 ERR_MESSAGE="$ ./init.sh /path/to/.env [mainnet|testnet] [sealer|client]"
 
-# Reads the cli args
+# Env path validation
 ENV_FILE=$1
 if [ -z "$ENV_FILE" ]; then
     echo "env file not given"
     echo $ERR_MESSAGE
     exit 2
 fi
+
+# Network validation
 NETWORK=$2
 if [ -z "$NETWORK" ]; then
     echo "network not given"
     echo $ERR_MESSAGE
     exit 2
 fi
+if [ "$NETWORK" != "mainnet" ] && [ "$NETWORK" != "testnet" ]; then
+    echo "invalid network"
+    echo $ERR_MESSAGE
+    exit 2
+fi
+
+# Node type validation
 NODE_TYPE=$3
-if [ -z "$NETWORK" ]; then
+if [ -z "$NODE_TYPE" ]; then
     echo "node type not given"
+    echo $ERR_MESSAGE
+    exit 2
+fi
+if [ "$NODE_TYPE" != "sealer" ] && [ "$NODE_TYPE" != "client" ]; then
+    echo "invalid node type"
     echo $ERR_MESSAGE
     exit 2
 fi
@@ -49,6 +63,8 @@ fi
 
 # Create genesis block
 if [ ! -z "$DATA_DIR" ] && [ ! -z "$GENESIS_FILE" ] && [ ! -d "$DATA_DIR/geth/chaindata" ]; then
+    if [ "$NETWORK" == "" ]
+
     echo "Init genesis block..."
     geth --datadir $DATA_DIR init $GENESIS_FILE
 fi
