@@ -1,15 +1,29 @@
 #!/bin/sh
 # Initializes a new node
 
-ERR_MESSAGE="$ ./init.sh /path/to/.env"
+ERR_MESSAGE="$ ./init.sh /path/to/.env [mainnet|testnet] [sealer|client]"
 
-# Reads the environment file passed via cli arg
+# Reads the cli args
 ENV_FILE=$1
 if [ -z "$ENV_FILE" ]; then
     echo "env file not given"
     echo $ERR_MESSAGE
     exit 2
 fi
+NETWORK=$2
+if [ -z "$NETWORK" ]; then
+    echo "network not given"
+    echo $ERR_MESSAGE
+    exit 2
+fi
+NODE_TYPE=$3
+if [ -z "$NETWORK" ]; then
+    echo "node type not given"
+    echo $ERR_MESSAGE
+    exit 2
+fi
+
+# Imports the env file
 export $(cat "$ENV_FILE" | xargs)
 
 # Setup data dir
