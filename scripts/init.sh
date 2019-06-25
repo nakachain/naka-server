@@ -93,26 +93,39 @@ if [ ! -z "$DATA_DIR" ]; then
     fi
 fi
 
-# Create bootnode systemd service
+# Add bootnode systemd service
 if [ ! -z "$BOOTNODE_KEY" ]; then
-    echo "Creating bootnode service..."
     if [ "$NETWORK" == "mainnet" ]; then
+        echo "Adding bootnode_mainnet.service..."
         sudo cp ../services/bootnode_mainnet.service /etc/systemd/system
         sudo systemctl enable bootnode_mainnet.service
     else
+        echo "Adding bootnode_testnet.service..."
         sudo cp ../services/bootnode_testnet.service /etc/systemd/system
         sudo systemctl enable bootnode_testnet.service
     fi
     sudo systemctl daemon-reload
 fi
 
-# Create geth systemd service
-if [ ! -f "/etc/systemd/system/geth.service" ]; then
-    echo "Creating geth service..."
-    sudo cp "$SERVICE_FILE" /etc/systemd/system
-    sudo systemctl enable geth.service
-    sudo systemctl daemon-reload
+# Add geth systemd service
+if [ "$NETWORK" == "mainnet" ] && [ "$NODE_TYPE" == "sealer" ]; then
+    echo "Adding geth_sealer_mainnet.service..."
+    sudo cp ../services/geth_sealer_mainnet.service /etc/systemd/system
+    sudo systemctl enable geth_sealer_mainnet.service
+elif [ "$NETWORK" == "mainnet" ] && [ "$NODE_TYPE" == "client" ]; then
+    echo "Adding geth_client_mainnet.service..."
+    sudo cp ../services/geth_client_mainnet.service /etc/systemd/system
+    sudo systemctl enable geth_client_mainnet.service
+elif [ "$NETWORK" == "testnet" ] && [ "$NODE_TYPE" == "sealer" ]; then
+    echo "Adding geth_sealer_testnet.service..."
+    sudo cp ../services/geth_sealer_testnet.service /etc/systemd/system
+    sudo systemctl enable geth_sealer_testnet.service
+elif [ "$NETWORK" == "testnet" ] && [ "$NODE_TYPE" == "client" ]; then
+    echo "Adding geth_client_testnet.service..."
+    sudo cp ../services/geth_client_testnet.service /etc/systemd/system
+    sudo systemctl enable geth_client_testnet.service
 fi
+sudo systemctl daemon-reload
 
 # Route geth syslogs to separate log file
 if [ ! -z "$GETH_LOG_CONFIG" ]; then
