@@ -34,10 +34,17 @@ fi
 
 # Setup logging
 if [ ! -z "$LOG_DIR" ] && [ ! -d "$LOG_DIR" ]; then
-    echo "Setting up log dir..."
+    echo "Setting up geth logs..."
     sudo mkdir -p "$LOG_DIR"
     sudo touch "$LOG_DIR/geth.log"
     sudo chown syslog:adm "$LOG_DIR/geth.log"
+
+    # Setup bootnode logs if needed
+    if [ ! -z "$BOOTNODE_KEY" ]; then
+        echo "Setting up bootnode logs..."
+        sudo touch "$LOG_DIR/bootnode.log"
+        sudo chown syslog:adm "$LOG_DIR/bootnode.log"
+    fi
 fi
 
 # Create genesis block
