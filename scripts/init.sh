@@ -46,19 +46,24 @@ if [ ! -z "$DATA_DIR" ] && [ ! -d "$DATA_DIR" ]; then
     mkdir -p "$DATA_DIR"
 fi
 
-# Setup logging
-if [ ! -z "$LOG_DIR" ] && [ ! -d "$LOG_DIR" ]; then
+# Setup geth logging
+if [ "$NETWORK" == "mainnet" ]; then
+    LOG_DIR=/var/log/geth/mainnet
+else
+    LOG_DIR=/var/log/geth/testnet
+fi
+if [ ! -d "$LOG_DIR" ]; then
     echo "Setting up geth logs..."
     sudo mkdir -p "$LOG_DIR"
     sudo touch "$LOG_DIR/geth.log"
     sudo chown syslog:adm "$LOG_DIR/geth.log"
+fi
 
-    # Setup bootnode logs if needed
-    if [ ! -z "$BOOTNODE_KEY" ]; then
-        echo "Setting up bootnode logs..."
-        sudo touch "$LOG_DIR/bootnode.log"
-        sudo chown syslog:adm "$LOG_DIR/bootnode.log"
-    fi
+# Setup bootnode logging
+if [ ! -z "$BOOTNODE_KEY" ] && [ ! -f "$LOG_DIR/bootnode.log" ]; then
+    echo "Setting up bootnode logs..."
+    sudo touch "$LOG_DIR/bootnode.log"
+    sudo chown syslog:adm "$LOG_DIR/bootnode.log"
 fi
 
 # Create genesis block
