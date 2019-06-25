@@ -1,6 +1,16 @@
 #!/bin/sh
 # Initializes a new node
-# Must inject env args before calling script
+
+ERR_MESSAGE="$ ./init.sh /path/to/.env"
+
+# Reads the environment file passed via cli arg
+ENV_FILE=$1
+if [ -z "$ENV_FILE" ]; then
+    echo "env file not given"
+    echo $ERR_MESSAGE
+    exit 2
+fi
+export $(cat "$ENV_FILE" | xargs)
 
 # Setup data dir
 if [ ! -z "$DATA_DIR" ] && [ ! -d "$DATA_DIR" ]; then
