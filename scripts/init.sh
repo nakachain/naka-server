@@ -1,5 +1,5 @@
 #!/bin/sh
-# Initializes a new node
+# Init script for a new node
 
 ERR_MESSAGE="$ ./init.sh /path/to/.env"
 
@@ -94,6 +94,9 @@ fi
 
 # Add bootnode systemd service
 if [ ! -z "$BOOTNODE_KEY" ]; then
+    echo "Copying bootnode-nohup.sh to data dir..."
+    cp bootnode-nohup.sh /home/ubuntu/.naka
+
     if [ "$NETWORK" == "mainnet" ]; then
         echo "Adding bootnode_mainnet.service..."
         sudo cp ../services/bootnode_mainnet.service /etc/systemd/system
@@ -108,18 +111,30 @@ fi
 
 # Add geth systemd service
 if [ "$NETWORK" == "mainnet" ] && [ "$NODE_TYPE" == "sealer" ]; then
+    echo "Copying sealer-nohup.sh to $DATA_DIR..."
+    cp sealer-nohup.sh /home/ubuntu/.naka
+
     echo "Adding geth_sealer_mainnet.service..."
     sudo cp ../services/geth_sealer_mainnet.service /etc/systemd/system
     sudo systemctl enable geth_sealer_mainnet.service
 elif [ "$NETWORK" == "mainnet" ] && [ "$NODE_TYPE" == "client" ]; then
+    echo "Copying client-nohup.sh to $DATA_DIR..."
+    cp client-nohup.sh /home/ubuntu/.naka
+
     echo "Adding geth_client_mainnet.service..."
     sudo cp ../services/geth_client_mainnet.service /etc/systemd/system
     sudo systemctl enable geth_client_mainnet.service
 elif [ "$NETWORK" == "testnet" ] && [ "$NODE_TYPE" == "sealer" ]; then
+    echo "Copying sealer-nohup.sh to $DATA_DIR..."
+    cp sealer-nohup.sh /home/ubuntu/.naka
+
     echo "Adding geth_sealer_testnet.service..."
     sudo cp ../services/geth_sealer_testnet.service /etc/systemd/system
     sudo systemctl enable geth_sealer_testnet.service
 elif [ "$NETWORK" == "testnet" ] && [ "$NODE_TYPE" == "client" ]; then
+    echo "Copying client-nohup.sh to $DATA_DIR..."
+    cp client-nohup.sh /home/ubuntu/.naka
+
     echo "Adding geth_client_testnet.service..."
     sudo cp ../services/geth_client_testnet.service /etc/systemd/system
     sudo systemctl enable geth_client_testnet.service
