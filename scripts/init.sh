@@ -63,22 +63,28 @@ fi
 
 # Create genesis block
 if [ ! -z "$DATA_DIR" ] && [ ! -z "$GENESIS_FILE" ] && [ ! -d "$DATA_DIR/geth/chaindata" ]; then
-    if [ "$NETWORK" == "" ]
-
     echo "Init genesis block..."
     geth --datadir $DATA_DIR init $GENESIS_FILE
 fi
 
 # Imports to the account to the datadir
-if [ ! -z "$DATA_DIR" ] && [ ! -z "$PW_FILE" ] && [ ! -z "$PRIV_KEY_FILE" ]; then
+if [ ! -z "$DATA_DIR" ] && [ ! -z "$PW_FILE" ] && [ ! -z "$PK_FILE" ]; then
     echo "Importing account..."
-    geth --datadir "$DATA_DIR" account import --password "$PW_FILE" "$PRIV_KEY_FILE"
+    geth --datadir "$DATA_DIR" account import --password "$PW_FILE" "$PK_FILE"
 fi
 
 # Copy static-nodes.json to data dir
 if [ ! -z "$STATIC_NODE_FILE" ] && [ ! -z "$DATA_DIR" ]; then
     echo "Copying static-node.json..."
     cp "$STATIC_NODE_FILE" "$DATA_DIR/geth"
+fi
+
+# Create bootnode systemd service
+if [ ! -z "$BOOTNODE_SERVICE" ]; then
+    echo "Creating bootnode service..."
+    sudo cp "$BOOTNODE_SERVICE" /etc/systemd/system
+    sudo systemctl enable bootnode.service
+    sudo systemctl daemon-reload
 fi
 
 # Create geth systemd service
@@ -90,9 +96,16 @@ if [ ! -f "/etc/systemd/system/geth.service" ]; then
 fi
 
 # Route geth syslogs to separate log file
-if [ ! -f "/etc/rsyslog.d/geth.conf" ]; then
+if [ ! -z "$GETH_LOG_CONFIG" ]; then
     echo "Routing geth logs..."
-    sudo cp "$SYSLOG_CONF_FILE" /etc/rsyslog.d
+    sudo cp "$GETH_LOG_CONFIG" /etc/rsyslog.d
+    sudo systemctl restart rsyslog
+fi
+
+# Route bootnode syslogs to separate log file
+if [ ! -z "$BOOTNODE_LOG_CONFIG" ]; then
+    echo "Routing bootnode logs..."
+    sudo cp "$BOOTNODE_LOG_CONFIG" /etc/rsyslog.d
     sudo systemctl restart rsyslog
 fi
 
