@@ -1,4 +1,5 @@
 #!/bin/sh
+# Starts a client node independently and sends to the background
 
 nohup \
 geth \

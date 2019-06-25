@@ -1,4 +1,5 @@
 #!/bin/sh
+# Starts a sealer node independently and sends to the background
 
 nohup \
 geth \

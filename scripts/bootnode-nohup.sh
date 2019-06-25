@@ -1,5 +1,5 @@
 #!/bin/sh
-# Starts the bootnode independently and sends to the background
+# Starts a bootnode independently and sends to the background
 
 nohup \
 bootnode \
