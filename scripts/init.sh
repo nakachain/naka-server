@@ -94,10 +94,15 @@ if [ ! -z "$DATA_DIR" ]; then
 fi
 
 # Create bootnode systemd service
-if [ ! -z "$BOOTNODE_SERVICE" ]; then
+if [ ! -z "$BOOTNODE_KEY" ]; then
     echo "Creating bootnode service..."
-    sudo cp "$BOOTNODE_SERVICE" /etc/systemd/system
-    sudo systemctl enable bootnode.service
+    if [ "$NETWORK" == "mainnet" ]; then
+        sudo cp ../services/bootnode_mainnet.service /etc/systemd/system
+        sudo systemctl enable bootnode_mainnet.service
+    else
+        sudo cp ../services/bootnode_testnet.service /etc/systemd/system
+        sudo systemctl enable bootnode_testnet.service
+    fi
     sudo systemctl daemon-reload
 fi
 
