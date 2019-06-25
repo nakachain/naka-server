@@ -17,6 +17,7 @@ This repo contains all the necessary config and scripts to run [Nakachain](https
 5. Create env file at `vim /home/ubuntu/.naka/[mainnet|testnet]/.env`
 
         # Example .env for mainnet client
+        # Get BOOTNODES info from docs
         NETWORK=mainnet
         NODE_TYPE=sealer
         CHAIN_ID=2019
