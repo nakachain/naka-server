@@ -1,0 +1,18 @@
+[Unit]
+Description=Geth bootnode
+After=network.target
+
+[Service]
+Type=forking
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu
+EnvironmentFile=/home/ubuntu/.naka/testnet/.env
+ExecStart=/home/ubuntu/.naka/start-client-nohup.sh
+Restart=on-failure
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=bootnode_testnet
+
+[Install]
+WantedBy=multi-user.target
