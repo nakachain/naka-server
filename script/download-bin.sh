@@ -1,16 +1,13 @@
 #!/bin/sh
+# Downloads, unzips, and moves bootnode and geth binaries to /usr/local/bin
 
-CURRENT_VERSION=v1.5.0
+CURRENT_VERSION=1.5.0
 
-# Fetch and unzip bootnode
-# echo "Downloading bootnode"
-# wget "https://github.com/nakachain/go-naka-release/releases/download/$CURRENT_VERSION/bootnode"
-# chmod 755 bootnode
-# sudo mv bootnode /usr/local/bin
-
-# Fetch and unzip geth
-echo "Downloading geth"
-wget "https://github.com/nakachain/go-naka-release/releases/download/$CURRENT_VERSION/geth-linux-amd64"
-mv geth-linux-amd64 geth
-chmod 755 geth
-sudo mv geth /usr/local/bin
+echo "Downloading all geth tools..."
+wget "https://github.com/nakachain/go-naka-release/releases/download/v$CURRENT_VERSION/geth-all-linux-amd64-$CURRENT_VERSION.tar.gz"
+tar xvzf "geth-all-linux-amd64-$CURRENT_VERSION.tar.gz" -C /tmp/naka/
+chmod 755 /tmp/naka/bootnode
+chmod 755 /tmp/naka/geth
+sudo mv /tmp/naka/bootnode /usr/local/bin
+sudo mv /tmp/naka/geth /usr/local/bin
+echo "Finished!"
