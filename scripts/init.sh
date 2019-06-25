@@ -62,9 +62,13 @@ if [ ! -z "$LOG_DIR" ] && [ ! -d "$LOG_DIR" ]; then
 fi
 
 # Create genesis block
-if [ ! -z "$DATA_DIR" ] && [ ! -z "$GENESIS_FILE" ] && [ ! -d "$DATA_DIR/geth/chaindata" ]; then
+if [ ! -z "$DATA_DIR" ] && [ ! -d "$DATA_DIR/geth/chaindata" ]; then
     echo "Init genesis block..."
-    geth --datadir $DATA_DIR init $GENESIS_FILE
+    if [ "$NETWORK" == "mainnet" ]; then
+        geth --datadir $DATA_DIR init ../metadata/mainnet/genesis.json
+    else
+        geth --datadir $DATA_DIR init ../metadata/testnet/genesis.json
+    fi
 fi
 
 # Imports to the account to the datadir
