@@ -12,23 +12,23 @@ This repo contains all the necessary config and scripts to run [Nakachain](https
 
 1. Clone repo
 2. `cd naka-server/script`
-3. Download the required binaries: `./download-bin.sh`
-4. `cd ../[mainnet/testnet]/[sealer/client]`
-5. Create env file: `vim .env`
+3. Download the required binaries by running `./download-bin.sh`
+4. Create the data directory at `/home/ubuntu/.naka`. Please note that it needs to be this directory or you will have to [change some other things](#changing-data-dir).
+5. Create env file at `vim /home/ubuntu/.naka/[mainnet|testnet]/.env`
 
         # Example .env for mainnet client
+        NETWORK=mainnet
+        NODE_TYPE=sealer
         CHAIN_ID=2019
+        ACCOUNT_ADDRESS=0x0000000000000000000000000000000000000000
         BOOTNODES=enode://29808ed7af11bc46b38b9eab91db47ec40e4733fdc7684183655e2ed2a262676ce5bed031fb79750035f229b0d4288cdc3ead13b777704535aabedad2d4ff8b5@52.194.7.60:30301,enode://d0ca807148c8ca9900ed3c479b2025a8a80ca9e1102b6efc4b058103c0cf25d054a71651768bf7648810866fbea384b22f3d66e16c680195ea2717da986374df@52.9.174.142:30301,enode://ffed101f9e2f79994dfe1d0e58b56be7a5e98538d85319f94ac85e0cae9292c1017ba6be7d107b17aaf78c4f46f19caea2332a93da7725910c2112d11347665d@13.53.210.165:30301
-        LOG_DIR=/var/log/geth
+        BOOTNODE_KEY=1234567890abcdfghijklmnopqrstuvwxyz
         DATA_DIR=/home/ubuntu/.naka/mainnet
-        SERVICE_FILE=/home/ubuntu/naka-server/mainnet/client/geth.service
-        SYSLOG_CONF_FILE=/home/ubuntu/naka-server/script/geth.conf
-        GENESIS_FILE=/home/ubuntu/naka-server/mainnet/genesis.json
-        STATIC_NODE_FILE=/home/ubuntu/naka-server/mainnet/static-nodes.json
+        PW_FILE=/home/ubuntu/.naka/mainnet/.accountpw
+        PK_FILE=/home/ubuntu/.naka/mainnet/.accountpk
 
-6. Run init script: `./init.sh`. This creates a Linux system service for geth among other necessary setup.
-7. `cd ../../script`
-8. `./start.sh` to start the node
+6. Run init script and pass in your newly-created .env file: `./init.sh /home/ubuntu/.naka/mainnet/.env`
+7. Use the [system command](#start-node) to start the node
 
 **Note: all system services automatically auto-run on reboots.**
 
@@ -82,3 +82,11 @@ systemctl status geth
 ```bash
 /script/attach.sh [mainnet|testnet]
 ```
+
+## Changing Data Dir
+
+If you want to use a different data directory location you will have to change the following:
+
+1. `DATA_DIR` in your .env file
+2. `DATA_DIR_ROOT` in `init.sh`
+3. `EnvironmentFile` and `ExecStart` fields in each `*.service` file
