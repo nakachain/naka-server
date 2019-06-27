@@ -27,6 +27,8 @@ This repo contains all the necessary config and scripts to run [go-naka](https:/
         DATA_DIR=/home/ubuntu/.naka/mainnet
         PW_FILE=/home/ubuntu/.naka/mainnet/.accountpw
         PK_FILE=/home/ubuntu/.naka/mainnet/.accountpk
+        RPC_PORT=8545
+        WS_PORT=8546
 
 6. Run init script and pass in your newly-created .env file: `./init.sh /home/ubuntu/.naka/mainnet/.env`
 7. Use the [system command](#start-node) to start the node
