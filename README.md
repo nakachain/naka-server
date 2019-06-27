@@ -16,7 +16,8 @@ This repo contains all the necessary config and scripts to run [go-naka](https:/
 4. Create the data directory at `/home/ubuntu/.naka`. Please note that it needs to be this directory or you will have to [change some other things](#changing-data-dir).
 5. Create env file. See [Environment Setup](#environment-setup).
 6. Run init script and pass in your newly-created .env file: `./init.sh /home/ubuntu/.naka/mainnet/.env`
-7. Use the [system command](#start-node) to start the node
+7. [Setup log rotations](#setup-automatic-log-rotation)
+8. Use the [system command](#start-node) to start the node
 
 **Note: all system services automatically auto-run on reboots.**
 
