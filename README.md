@@ -109,10 +109,20 @@ The different log files are located at:
 
 ### Setup Automatic Log Rotation
 
-For adding automatic log rotations, open `/etc/logrotate.conf` and add the following:
+For adding automatic log rotations, open `/etc/logrotate.conf` and add the following.
 
 ```text
 /var/log/geth/mainnet/geth.log {
+    missingok
+    daily
+    create 0644 syslog adm
+    size 100M
+    copytruncate
+    maxage 14
+    rotate 9
+}
+
+/var/log/geth/testnet/geth.log {
     missingok
     daily
     create 0644 syslog adm
