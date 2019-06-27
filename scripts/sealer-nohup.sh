@@ -1,4 +1,5 @@
 #!/bin/sh
+# Starts a sealer node independently and sends to the background
 
 nohup \
 geth \
@@ -7,9 +8,7 @@ geth \
 --networkid "$CHAIN_ID" \
 --nat=none \
 --targetgaslimit 4700000 \
---rpc \
---rpcaddr "127.0.0.1" \
---rpccorsdomain "127.0.0.1" \
+--port "$LISTEN_PORT" \
 --verbosity 4 \
 --mine \
 --bootnodes "$BOOTNODES" \
