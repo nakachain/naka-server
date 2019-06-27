@@ -133,30 +133,6 @@ For adding automatic log rotations, open `/etc/logrotate.conf` and add the follo
 }
 ```
 
-## Start Node
-
-```bash
-sudo systemctl start geth
-```
-
-## Stop Node
-
-```bash
-sudo systemctl stop geth
-```
-
-## Check Node Status
-
-```bash
-systemctl status geth
-```
-
-## Attach Geth Console
-
-```bash
-/script/attach.sh [mainnet|testnet]
-```
-
 ## Changing Data Dir
 
 If you want to use a different data directory location you will have to change the following:
@@ -164,3 +140,40 @@ If you want to use a different data directory location you will have to change t
 1. `DATA_DIR` in your .env file
 2. `DATA_DIR_ROOT` in `init.sh`
 3. `EnvironmentFile` and `ExecStart` fields in each `*.service` file
+
+## Services
+
+After running the `init.sh` script, you will now have systemd service(s) added. These are the following services depending on your env config:
+
+```bash
+geth_client_mainnet
+geth_client_testnet
+geth_sealer_mainnet
+geth_sealer_testnet
+bootnode_mainnet
+bootnode_testnet
+```
+
+### Start Service
+
+```bash
+sudo systemctl start SERVICE_NAME
+```
+
+### Stop Node
+
+```bash
+sudo systemctl stop SERVICE_NAME
+```
+
+### Check Status
+
+```bash
+systemctl status SERVICE_NAME
+```
+
+## Attach Geth Console
+
+```bash
+/script/attach.sh [mainnet|testnet]
+```
