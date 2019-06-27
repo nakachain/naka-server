@@ -16,7 +16,8 @@ This repo contains all the necessary config and scripts to run [go-naka](https:/
 4. Create the data directory at `/home/ubuntu/.naka`. Please note that it needs to be this directory or you will have to [change some other things](#changing-data-dir).
 5. Create env file. See [Environment Setup](#environment-setup).
 6. Run init script and pass in your newly-created .env file: `./init.sh /home/ubuntu/.naka/mainnet/.env`
-7. Use the [system command](#start-node) to start the node
+7. [Setup log rotations](#setup-automatic-log-rotation)
+8. Use the [system command](#start-node) to start the node
 
 **Note: all system services automatically auto-run on reboots.**
 
@@ -24,7 +25,8 @@ This repo contains all the necessary config and scripts to run [go-naka](https:/
 
 - [Chain ID](https://docs.nakachain.org/docs/nakachain-metadata/#chain-id)
 - [Bootnodes](https://docs.nakachain.org/docs/nakachain-metadata/#bootnodes)
-- Default .env locations: mainnet = `/home/ubuntu/.naka/mainnet/.env`, testnet = `/home/ubuntu/.naka/testnet/.env`
+- Default mainnet .env location: `/home/ubuntu/.naka/mainnet/.env`
+- Default testnet .env location: `/home/ubuntu/.naka/testnet/.env`
 
 ### Client Env
 
@@ -108,7 +110,7 @@ The different log files are located at:
 
 ### Setup Automatic Log Rotation
 
-For adding automatic log rotations, open `/etc/logrotate.conf` and add the following:
+For adding automatic log rotations, open `/etc/logrotate.conf` and add the following.
 
 ```text
 /var/log/geth/mainnet/geth.log {
@@ -120,30 +122,16 @@ For adding automatic log rotations, open `/etc/logrotate.conf` and add the follo
     maxage 14
     rotate 9
 }
-```
 
-## Start Node
-
-```bash
-sudo systemctl start geth
-```
-
-## Stop Node
-
-```bash
-sudo systemctl stop geth
-```
-
-## Check Node Status
-
-```bash
-systemctl status geth
-```
-
-## Attach Geth Console
-
-```bash
-/script/attach.sh [mainnet|testnet]
+/var/log/geth/testnet/geth.log {
+    missingok
+    daily
+    create 0644 syslog adm
+    size 100M
+    copytruncate
+    maxage 14
+    rotate 9
+}
 ```
 
 ## Changing Data Dir
@@ -153,3 +141,40 @@ If you want to use a different data directory location you will have to change t
 1. `DATA_DIR` in your .env file
 2. `DATA_DIR_ROOT` in `init.sh`
 3. `EnvironmentFile` and `ExecStart` fields in each `*.service` file
+
+## Services
+
+After running the `init.sh` script, you will now have systemd service(s) added. These are the following services depending on your env config:
+
+```bash
+geth_client_mainnet
+geth_client_testnet
+geth_sealer_mainnet
+geth_sealer_testnet
+bootnode_mainnet
+bootnode_testnet
+```
+
+### Start Service
+
+```bash
+sudo systemctl start SERVICE_NAME
+```
+
+### Stop Node
+
+```bash
+sudo systemctl stop SERVICE_NAME
+```
+
+### Check Status
+
+```bash
+systemctl status SERVICE_NAME
+```
+
+## Attach Geth Console
+
+```bash
+/script/attach.sh [mainnet|testnet]
+```

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Init script for a new node
 
 DATA_DIR_ROOT=/home/ubuntu/.naka
@@ -48,7 +48,7 @@ if [ ! -z "$DATA_DIR" ] && [ ! -d "$DATA_DIR" ]; then
 fi
 
 # Setup geth logging
-if [ "$NETWORK" == "mainnet" ]; then
+if [ "$NETWORK" = "mainnet" ]; then
     LOG_DIR=/var/log/geth/mainnet
 else
     LOG_DIR=/var/log/geth/testnet
@@ -70,7 +70,7 @@ fi
 # Create genesis block
 if [ ! -d "$DATA_DIR/geth/chaindata" ]; then
     echo "Init genesis block..."
-    if [ "$NETWORK" == "mainnet" ]; then
+    if [ "$NETWORK" = "mainnet" ]; then
         geth --datadir $DATA_DIR init ../metadata/mainnet/genesis.json
     else
         geth --datadir $DATA_DIR init ../metadata/testnet/genesis.json
@@ -85,7 +85,7 @@ fi
 
 # Copy static-nodes.json to data dir
 echo "Copying static-nodes.json..."
-if [ "$NETWORK" == "mainnet" ]; then
+if [ "$NETWORK" = "mainnet" ]; then
     cp ../metadata/mainnet/static-nodes.json "$DATA_DIR/geth"
 else
     cp ../metadata/testnet/static-nodes.json "$DATA_DIR/geth"
@@ -93,7 +93,7 @@ fi
 
 # Route bootnode syslogs to separate log file
 if [ ! -z "$BOOTNODE_KEY" ]; then
-    if [ "$NETWORK" == "mainnet" ]; then
+    if [ "$NETWORK" = "mainnet" ]; then
         echo "Routing bootnode_mainnet logs..."
         sudo cp ../logging/bootnode_mainnet.conf /etc/rsyslog.d
     else
@@ -104,7 +104,7 @@ if [ ! -z "$BOOTNODE_KEY" ]; then
 fi
 
 # Route geth syslogs to separate log file
-if [ "$NETWORK" == "mainnet" ]; then
+if [ "$NETWORK" = "mainnet" ]; then
     echo "Routing geth_mainnet logs..."
     sudo cp ../logging/geth_mainnet.conf /etc/rsyslog.d
 else
@@ -118,7 +118,7 @@ if [ ! -z "$BOOTNODE_KEY" ]; then
     echo "Copying bootnode-nohup.sh to data dir..."
     cp bootnode-nohup.sh $DATA_DIR_ROOT
 
-    if [ "$NETWORK" == "mainnet" ]; then
+    if [ "$NETWORK" = "mainnet" ]; then
         echo "Adding bootnode_mainnet.service..."
         sudo cp ../services/bootnode_mainnet.service /etc/systemd/system
         sudo systemctl enable bootnode_mainnet.service
@@ -131,28 +131,28 @@ if [ ! -z "$BOOTNODE_KEY" ]; then
 fi
 
 # Add geth systemd service
-if [ "$NODE_TYPE" == "sealer" ]; then
+if [ "$NODE_TYPE" = "sealer" ]; then
     echo "Copying sealer-nohup.sh to $DATA_DIR_ROOT..."
     cp sealer-nohup.sh $DATA_DIR_ROOT
 
-    if [ "$NETWORK" == "mainnet" ]; then
+    if [ "$NETWORK" = "mainnet" ]; then
         echo "Adding geth_sealer_mainnet.service..."
         sudo cp ../services/geth_sealer_mainnet.service /etc/systemd/system
         sudo systemctl enable geth_sealer_mainnet.service
-    elif [ "$NETWORK" == "testnet" ]; then
+    elif [ "$NETWORK" = "testnet" ]; then
         echo "Adding geth_sealer_testnet.service..."
         sudo cp ../services/geth_sealer_testnet.service /etc/systemd/system
         sudo systemctl enable geth_sealer_testnet.service
     fi
-elif [ "$NODE_TYPE" == "client" ]; then
+elif [ "$NODE_TYPE" = "client" ]; then
     echo "Copying client-nohup.sh to $DATA_DIR_ROOT..."
     cp client-nohup.sh $DATA_DIR_ROOT
 
-    if [ "$NETWORK" == "mainnet" ]; then
+    if [ "$NETWORK" = "mainnet" ]; then
         echo "Adding geth_client_mainnet.service..."
         sudo cp ../services/geth_client_mainnet.service /etc/systemd/system
         sudo systemctl enable geth_client_mainnet.service
-    elif [ "$NETWORK" == "testnet" ]; then
+    elif [ "$NETWORK" = "testnet" ]; then
         echo "Adding geth_client_testnet.service..."
         sudo cp ../services/geth_client_testnet.service /etc/systemd/system
         sudo systemctl enable geth_client_testnet.service
