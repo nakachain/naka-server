@@ -3,6 +3,7 @@
 
 nohup \
 bootnode \
+-addr $BOOTNODE_PORT \
 -nodekey $BOOTNODE_KEY \
 -verbosity 9 \
 &

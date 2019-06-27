@@ -61,6 +61,9 @@ BOOTNODES=enode://29808ed7af11bc46b38b9eab91db47ec40e4733fdc7684183655e2ed2a2626
 
 # Bootnode key if you are running a bootnode on this server (optional)
 BOOTNODE_KEY=/home/ubuntu/.naka/mainnet/boot.key
+
+# Bootnode port where it will listen for incoming connections
+BOOTNODE_PORT=30301
 ```
 
 ### Sealer Env
@@ -97,6 +100,9 @@ BOOTNODES=enode://29808ed7af11bc46b38b9eab91db47ec40e4733fdc7684183655e2ed2a2626
 
 # Bootnode key if you are running a bootnode on this server (optional)
 BOOTNODE_KEY=/home/ubuntu/.naka/mainnet/boot.key
+
+# Bootnode port where it will listen for incoming connections (optional)
+BOOTNODE_PORT=30301
 ```
 
 ## Logging
@@ -124,8 +130,25 @@ For adding automatic log rotations, open `/etc/logrotate.conf` and add the follo
     maxage 14
     rotate 9
 }
-
+/var/log/geth/mainnet/bootnode.log {
+    missingok
+    daily
+    create 0644 syslog adm
+    size 100M
+    copytruncate
+    maxage 14
+    rotate 9
+}
 /var/log/geth/testnet/geth.log {
+    missingok
+    daily
+    create 0644 syslog adm
+    size 100M
+    copytruncate
+    maxage 14
+    rotate 9
+}
+/var/log/geth/testnet/bootnode.log {
     missingok
     daily
     create 0644 syslog adm
