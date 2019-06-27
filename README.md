@@ -1,6 +1,6 @@
 # Naka Server
 
-This repo contains all the necessary config and scripts to run [Nakachain](https://github.com/nakachain/go-naka) nodes.
+This repo contains all the necessary config and scripts to run [go-naka](https://github.com/nakachain/go-naka) nodes.
 
 ## Minimum Requirements
 
