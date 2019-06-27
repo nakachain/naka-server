@@ -35,6 +35,81 @@ This repo contains all the necessary config and scripts to run [go-naka](https:/
 
 **Note: all system services automatically auto-run on reboots.**
 
+## Environment Setup
+
+- [Chain ID](https://docs.nakachain.org/docs/nakachain-metadata/#chain-id)
+- [Bootnodes](https://docs.nakachain.org/docs/nakachain-metadata/#bootnodes)
+- Default DATA_DIR locations: mainnet = `/home/ubuntu/.naka/mainnet`, testnet = `/home/ubuntu/.naka/testnet`
+
+### Client Env
+
+See `example-client.env` for an example. You will need to create an `.env` file in the default `DATA_DIR` location. Below is the explanation for each field.
+
+```bash
+# Network type: mainnet|testnet
+NETWORK=mainnet
+
+# Node type: client|sealer
+NODE_TYPE=client
+
+# Chain ID for the chain
+CHAIN_ID=2019
+
+# Data directory where all geth data will go
+DATA_DIR=/home/ubuntu/.naka/mainnet
+
+# Port where the node will listen for other nodes trying to connect
+LISTEN_PORT=30303
+
+# Port for HTTP-RPC server
+RPC_PORT=8545
+
+# Port for WS-RPC server
+WS_PORT=8546
+
+# Comma-separated values for all the bootnodes
+BOOTNODES=enode://29808ed7af11bc46b38b9eab91db47ec40e4733fdc7684183655e2ed2a262676ce5bed031fb79750035f229b0d4288cdc3ead13b777704535aabedad2d4ff8b5@52.194.7.60:30301,enode://d0ca807148c8ca9900ed3c479b2025a8a80ca9e1102b6efc4b058103c0cf25d054a71651768bf7648810866fbea384b22f3d66e16c680195ea2717da986374df@52.9.174.142:30301,enode://ffed101f9e2f79994dfe1d0e58b56be7a5e98538d85319f94ac85e0cae9292c1017ba6be7d107b17aaf78c4f46f19caea2332a93da7725910c2112d11347665d@13.53.210.165:30301
+
+# Bootnode key if you are running a bootnode on this server (optional)
+BOOTNODE_KEY=
+```
+
+### Sealer Env
+
+See `example-sealer.env` for an example. You will need to create an `.env` file in the default `DATA_DIR` location. Below is the explanation for each field.
+
+```bash
+# Network type: mainnet|testnet
+NETWORK=mainnet
+
+# Node type: client|sealer
+NODE_TYPE=client
+
+# Chain ID for the chain
+CHAIN_ID=2019
+
+# Data directory where all geth data will go
+DATA_DIR=/home/ubuntu/.naka/mainnet
+
+# Account which will be imported into the sealer. This will serve as the etherbase account.
+ACCOUNT_ADDRESS=0x0000000000000000000000000000000000000000
+
+# Password file for the account. Plain text file with the account's password.
+PW_FILE=/home/ubuntu/.naka/mainnet/.accountpw
+
+# Private key file for the account. Plain text file with the account's private key.
+PK_FILE=/home/ubuntu/.naka/mainnet/.accountpk
+
+# Port where the node will listen for other nodes trying to connect
+LISTEN_PORT=30303
+
+# Comma-separated values for all the bootnodes
+BOOTNODES=enode://29808ed7af11bc46b38b9eab91db47ec40e4733fdc7684183655e2ed2a262676ce5bed031fb79750035f229b0d4288cdc3ead13b777704535aabedad2d4ff8b5@52.194.7.60:30301,enode://d0ca807148c8ca9900ed3c479b2025a8a80ca9e1102b6efc4b058103c0cf25d054a71651768bf7648810866fbea384b22f3d66e16c680195ea2717da986374df@52.9.174.142:30301,enode://ffed101f9e2f79994dfe1d0e58b56be7a5e98538d85319f94ac85e0cae9292c1017ba6be7d107b17aaf78c4f46f19caea2332a93da7725910c2112d11347665d@13.53.210.165:30301
+
+# Bootnode key if you are running a bootnode on this server (optional)
+BOOTNODE_KEY=
+```
+
 ## Logging
 
 The different log files are located at:
