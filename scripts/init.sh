@@ -70,7 +70,7 @@ fi
 # Create genesis block
 if [ ! -d "$DATA_DIR/geth/chaindata" ]; then
     echo "Init genesis block..."
-    if [ "$NETWORK" == "mainnet" ]; then
+    if [ "$NETWORK" = "mainnet" ]; then
         geth --datadir $DATA_DIR init ../metadata/mainnet/genesis.json
     else
         geth --datadir $DATA_DIR init ../metadata/testnet/genesis.json
