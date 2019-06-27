@@ -25,7 +25,8 @@ This repo contains all the necessary config and scripts to run [go-naka](https:/
 
 - [Chain ID](https://docs.nakachain.org/docs/nakachain-metadata/#chain-id)
 - [Bootnodes](https://docs.nakachain.org/docs/nakachain-metadata/#bootnodes)
-- Default .env locations: mainnet = `/home/ubuntu/.naka/mainnet/.env`, testnet = `/home/ubuntu/.naka/testnet/.env`
+- Default mainnet .env location: `/home/ubuntu/.naka/mainnet/.env`
+- Default testnet .env location: `/home/ubuntu/.naka/testnet/.env`
 
 ### Client Env
 
