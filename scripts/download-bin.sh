@@ -11,4 +11,5 @@ chmod 755 /tmp/naka/bootnode
 chmod 755 /tmp/naka/geth
 sudo mv /tmp/naka/bootnode /usr/local/bin
 sudo mv /tmp/naka/geth /usr/local/bin
+rm "geth-all-linux-amd64-$CURRENT_VERSION.tar.gz"
 echo "Finished!"
