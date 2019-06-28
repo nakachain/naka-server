@@ -12,15 +12,15 @@ This repo contains all the necessary config and scripts to run [go-naka](https:/
 ## New Node Setup
 
 1. Clone repo
-2. `cd naka-server/script`
-3. Download the required binaries by running `./download-bin.sh`
-4. Create the data directory at `/home/ubuntu/.naka`. Please note that it needs to be this directory or you will have to [change some other things](#changing-data-dir).
-5. Create env file. See [Environment Setup](#environment-setup).
-6. Create the `PW_FILE` if you are attaching an account to the node
-7. Create the `PK_FILE` if you are attaching an account to the node
-8. Create the `BOOTNODE_KEY` if you are running a bootnode
-9. Run init script and pass in your newly-created .env file: `./init.sh /home/ubuntu/.naka/mainnet/.env`
-10. [Setup log rotations](#setup-automatic-log-rotation)
+2. Create the data directory at `/home/ubuntu/.naka`. Please note that it needs to be this directory or you will have to [change some other things](#changing-data-dir).
+3. Create env file. See [Environment Setup](#environment-setup).
+4. Create the `PW_FILE` if you are attaching an account to the node
+5. Create the `PK_FILE` if you are attaching an account to the node
+6. Create the `BOOTNODE_KEY` if you are running a bootnode
+7. [Setup log rotations](#setup-automatic-log-rotation)
+8. `cd naka-server/script`
+9. Download the required binaries by running `./download-bin.sh`
+10. Run init script and pass in your newly-created .env file: `./init.sh /home/ubuntu/.naka/mainnet/.env`
 11. Use the [system command](#start-service) to start the bootnode
 12. Use the [system command](#start-service) to start the node
 
