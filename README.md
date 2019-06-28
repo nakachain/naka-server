@@ -124,7 +124,7 @@ The different log files are located at:
 For adding automatic log rotations, create a new config file at `/etc/logrotate.d` and add the following.
 
 ```bash
-$ vim /etc/logrotate.d/naka
+$ sudo vim /etc/logrotate.d/naka
 
 # Paste the config below and save the file
 /var/log/geth/mainnet/geth.log {
