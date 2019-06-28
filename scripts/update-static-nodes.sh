@@ -1,8 +1,8 @@
 #!/bin/sh
 # Updates static-nodes.json for an already init'ed node
 
-MAINNET_DEST=/home/ubuntu/.naka/mainnet/geth/static-nodes.json
-TESTNET_DEST=/home/ubuntu/.naka/testnet/geth/static-nodes.json
+MAINNET_DEST=$HOME/.naka/mainnet/geth/static-nodes.json
+TESTNET_DEST=$HOME/.naka/testnet/geth/static-nodes.json
 
 echo "Update static-nodes.json"
 echo "========================"

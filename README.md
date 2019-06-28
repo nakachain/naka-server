@@ -7,35 +7,47 @@ This repo contains all the necessary config and scripts to run [go-naka](https:/
 1. Linux-based AMD64 arch type OS
 2. Dual-core CPU
 3. 2 GB RAM
-4. rsyslog installed
+4. Rsyslog installed
 
 ## New Node Setup
 
+Please note this setup is meant for deployment on AWS EC2 Linux instances where the default user is `ubuntu`, but can be adjusted to your environment. **If your default user is not `ubuntu`, see [changing data dir](#changing-data-dir) for instructions.**
+
 1. Clone repo
-2. Create the data directory at `/home/ubuntu/.naka`. Please note that it needs to be this directory or you will have to [change some other things](#changing-data-dir).
-3. Create env file. See [Environment Setup](#environment-setup).
+2. Create the `.naka` data directory in your home directory: `~/.naka`
+3. [Create env file](#environment-setup)
 4. Create the `PW_FILE` if you are attaching an account to the node
 5. Create the `PK_FILE` if you are attaching an account to the node
 6. Create the `BOOTNODE_KEY` if you are running a bootnode
 7. [Setup log rotations](#setup-automatic-log-rotation)
 8. `cd naka-server/script`
 9. Download the required binaries by running `./download-bin.sh`
-10. Run init script and pass in your newly-created .env file: `./init.sh /home/ubuntu/.naka/mainnet/.env`
+10. Run init script and pass in your newly-created .env file: `./init.sh ~/.naka/mainnet/.env`
 11. Use the [system command](#start-service) to start the bootnode
 12. Use the [system command](#start-service) to start the node
 
 **Note: all system services automatically auto-run on reboots.**
 
+## Changing Data Dir
+
+If your default user is not `ubuntu` you will need to change the following. The default `DATA_DIR_ROOT` is set to `/home/ubuntu/.naka`.
+
+1. `EnvironmentFile` and `ExecStart` fields in each `services/*.service` file
+2. `DATA_DIR` in your .env file
+3. `BOOTNODE_KEY` in your .env file (if running a bootnode)
+4. `PW_FILE` in your .env file (if attaching an account)
+5. `PK_FILE` in your .env file (if attaching an account)
+
 ## Environment Setup
 
 - [Chain ID](https://docs.nakachain.org/docs/nakachain-metadata/#chain-id)
 - [Bootnodes](https://docs.nakachain.org/docs/nakachain-metadata/#bootnodes)
-- Default mainnet .env location: `/home/ubuntu/.naka/mainnet/.env`
-- Default testnet .env location: `/home/ubuntu/.naka/testnet/.env`
+- Default mainnet .env location: `~/.naka/mainnet/.env`
+- Default testnet .env location: `~/.naka/testnet/.env`
 
 ### Client Env
 
-See `example-client.env` for an example. You will need to create an `.env` file in the default `DATA_DIR` location. Below is the explanation for each field.
+See `example-client.env` for an example. You will need to create an `.env` file in the `DATA_DIR` location. Below is the explanation for each field.
 
 ```bash
 # Network type: mainnet|testnet
@@ -71,7 +83,7 @@ BOOTNODE_PORT=30301
 
 ### Sealer Env
 
-See `example-sealer.env` for an example. You will need to create an `.env` file in the default `DATA_DIR` location. Below is the explanation for each field.
+See `example-sealer.env` for an example. You will need to create an `.env` file in the `DATA_DIR` location. Below is the explanation for each field.
 
 ```bash
 # Network type: mainnet|testnet
@@ -165,14 +177,6 @@ $ sudo vim /etc/logrotate.d/naka
 }
 ```
 
-## Changing Data Dir
-
-If you want to use a different data directory location you will have to change the following:
-
-1. `DATA_DIR` in your .env file
-2. `DATA_DIR_ROOT` in `init.sh`
-3. `EnvironmentFile` and `ExecStart` fields in each `*.service` file
-
 ## Services
 
 After running the `init.sh` script, you will now have systemd service(s) added. These are the following services depending on your env config:
@@ -207,5 +211,5 @@ systemctl status SERVICE_NAME
 ## Attach Geth Console
 
 ```bash
-/script/attach.sh [mainnet|testnet]
+scripts/attach.sh
 ```
