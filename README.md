@@ -7,6 +7,7 @@ This repo contains all the necessary config and scripts to run [go-naka](https:/
 1. Linux-based AMD64 arch type OS
 2. Dual-core CPU
 3. 2 GB RAM
+4. rsyslog installed
 
 ## New Node Setup
 
@@ -19,7 +20,8 @@ This repo contains all the necessary config and scripts to run [go-naka](https:/
 7. Create the `PK_FILE` if you are attaching an account to the node
 8. Run init script and pass in your newly-created .env file: `./init.sh /home/ubuntu/.naka/mainnet/.env`
 9. [Setup log rotations](#setup-automatic-log-rotation)
-10. Use the [system command](#start-node) to start the node
+10. Use the [system command](#start-service) to start the bootnode
+11. Use the [system command](#start-service) to start the node
 
 **Note: all system services automatically auto-run on reboots.**
 
@@ -186,7 +188,7 @@ bootnode_testnet
 sudo systemctl start SERVICE_NAME
 ```
 
-### Stop Node
+### Stop Service
 
 ```bash
 sudo systemctl stop SERVICE_NAME
