@@ -1,7 +1,7 @@
 #!/bin/bash
 # Init script for a new node
 
-DATA_DIR_ROOT=/home/ubuntu/.naka
+DATA_DIR_ROOT=$HOME/.naka
 ERR_MESSAGE="$ ./init.sh /path/to/.env"
 
 # Env file validation
