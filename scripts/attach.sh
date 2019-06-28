@@ -4,8 +4,8 @@
 MAINNET_IPC=$HOME/.naka/mainnet/geth.ipc
 TESTNET_IPC=$HOME/.naka/testnet/geth.ipc
 
-echo "Attaching geth"
-echo "=============="
+echo "Attach geth"
+echo "==========="
 echo "Enter input:"
 echo "1 for Mainnet"
 echo "2 for Testnet"
