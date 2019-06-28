@@ -30,9 +30,9 @@ Please note this setup is meant for deployment on AWS EC2 Linux instances where 
 
 ## Changing Data Dir
 
-If your default user is not `ubuntu` you will need to change the following. The default `DATA_DIR_ROOT` is set to `/home/ubuntu/.naka`.
+If your default user is not `ubuntu` you will need to change the following. The default `DATA_DIR_ROOT` is set to `/home/ubuntu/.naka`. You can change replace `ubuntu` with whatever your default user is: `/home/myuser/.naka`.
 
-1. `EnvironmentFile` and `ExecStart` fields in each `services/*.service` file
+1. `WorkingDirectory`, `EnvironmentFile`, and `ExecStart` fields in each `services/*.service` file
 2. `DATA_DIR` in your .env file
 3. `BOOTNODE_KEY` in your .env file (if running a bootnode)
 4. `PW_FILE` in your .env file (if attaching an account)
@@ -47,7 +47,7 @@ If your default user is not `ubuntu` you will need to change the following. The 
 
 ### Client Env
 
-See `example-client.env` for an example. You will need to create an `.env` file in the `DATA_DIR` location. Below is the explanation for each field.
+See `example-client.env` for an example. You will need to create this `.env` file in the `DATA_DIR` location. Below is the explanation for each field.
 
 ```bash
 # Network type: mainnet|testnet
@@ -83,7 +83,7 @@ BOOTNODE_PORT=30301
 
 ### Sealer Env
 
-See `example-sealer.env` for an example. You will need to create an `.env` file in the `DATA_DIR` location. Below is the explanation for each field.
+See `example-sealer.env` for an example. You will need to create this `.env` file in the `DATA_DIR` location. Below is the explanation for each field.
 
 ```bash
 # Network type: mainnet|testnet
@@ -193,23 +193,31 @@ bootnode_testnet
 ### Start Service
 
 ```bash
-sudo systemctl start SERVICE_NAME
+$ sudo systemctl start $SERVICE_NAME
 ```
 
 ### Stop Service
 
 ```bash
-sudo systemctl stop SERVICE_NAME
+$ sudo systemctl stop $SERVICE_NAME
 ```
 
 ### Check Status
 
 ```bash
-systemctl status SERVICE_NAME
+$ systemctl status $SERVICE_NAME
 ```
 
 ## Attach Geth Console
 
 ```bash
-scripts/attach.sh
+$ cd scripts
+$ ./attach.sh
+```
+
+## Updating static-nodes.json
+
+```bash
+$ cd scripts
+$ ./update-static-nodes.sh
 ```
