@@ -18,10 +18,11 @@ This repo contains all the necessary config and scripts to run [go-naka](https:/
 5. Create env file. See [Environment Setup](#environment-setup).
 6. Create the `PW_FILE` if you are attaching an account to the node
 7. Create the `PK_FILE` if you are attaching an account to the node
-8. Run init script and pass in your newly-created .env file: `./init.sh /home/ubuntu/.naka/mainnet/.env`
-9. [Setup log rotations](#setup-automatic-log-rotation)
-10. Use the [system command](#start-service) to start the bootnode
-11. Use the [system command](#start-service) to start the node
+8. Create the `BOOTNODE_KEY` if you are running a bootnode
+9. Run init script and pass in your newly-created .env file: `./init.sh /home/ubuntu/.naka/mainnet/.env`
+10. [Setup log rotations](#setup-automatic-log-rotation)
+11. Use the [system command](#start-service) to start the bootnode
+12. Use the [system command](#start-service) to start the node
 
 **Note: all system services automatically auto-run on reboots.**
 
@@ -120,9 +121,12 @@ The different log files are located at:
 
 ### Setup Automatic Log Rotation
 
-For adding automatic log rotations, open `/etc/logrotate.conf` and add the following.
+For adding automatic log rotations, create a new config file at `/etc/logrotate.d` and add the following.
 
-```text
+```bash
+$ vim /etc/logrotate.d/naka
+
+# Paste the config below and save the file
 /var/log/geth/mainnet/geth.log {
     missingok
     daily
