@@ -10,11 +10,7 @@ COPY ${GENESIS_PATH} /root
 
 # Copy static-nodes.json
 ARG STATIC_NODES_PATH
-COPY ${STATIC_NODES_PATH} /root
-
-# Run init script
-COPY ./docker/scripts/init.sh /usr/local/bin
-RUN init.sh
+COPY ${STATIC_NODES_PATH} /root/.ethereum/geth
 
 # Create env vars for shell script
 ARG CHAIN_ID
@@ -28,22 +24,7 @@ ENV CHAIN_ID=$CHAIN_ID \
     RPC_PORT=$RPC_PORT \
     WS_PORT=$WS_PORT
 
-ENTRYPOINT geth \
---syncmode full \
---gcmode archive \
---networkid "${CHAIN_ID}" \
---nat=none \
---targetgaslimit 4700000 \
---port "${LISTEN_PORT}" \
---rpc \
---rpcaddr 0.0.0.0 \
---rpcport "${RPC_PORT}" \
---rpccorsdomain "*" \
---rpcapi db,debug,eth,net,web3 \
---ws \
---wsaddr 0.0.0.0 \
---wsport "${WS_PORT}" \
---wsorigins "*" \
---wsapi db,debug,eth,net,web3 \
---verbosity 4 \
---bootnodes "${BOOTNODES}"
+# Copy init script
+COPY ./docker/scripts/init.sh /usr/local/bin
+
+ENTRYPOINT init.sh
