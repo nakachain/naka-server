@@ -1,7 +1,6 @@
 #!/bin/sh
 
 geth \
---datadir "$DATA_DIR" \
 --syncmode full \
 --gcmode archive \
 --networkid "$CHAIN_ID" \

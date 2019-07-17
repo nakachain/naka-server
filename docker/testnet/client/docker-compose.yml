@@ -1,11 +1,10 @@
 version: '3.7'
 
 services:
-  testnet-client:
-    hostname: testnet-client
-    container_name: testnet-client
+  client-testnet:
+    image: nakachain/go-naka:v1.5.0
     build:
-      context: ../../
+      context: ../../../
       dockerfile: ./node-client/Dockerfile
       args:
         STATIC_NODE_PATH: "./testnet/static-nodes.json"
@@ -19,12 +18,9 @@ services:
       - 8546:8546
       - 30303:30303
     volumes:
-      - testnet-client-data:/root/.naka:rw
+      - ${HOST_DATA_DIR}:/root/.ethereum
     logging:
       driver: json-file
       options:
         max-size: "1m"
         max-file: "10"
-
-volumes:
-  testnet-client-data:
