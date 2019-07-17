@@ -22,6 +22,6 @@ ENV CHAIN_ID=$CHAIN_ID \
     WS_PORT=$WS_PORT
 
 # Copy init script
-COPY ./docker/scripts/init.sh /usr/local/bin
+COPY ./docker/scripts/start-client.sh /usr/local/bin
 
-ENTRYPOINT init.sh
+ENTRYPOINT start-client.sh

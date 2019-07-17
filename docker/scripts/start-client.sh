@@ -1,4 +1,6 @@
 #!/bin/sh
+# start-client.sh
+# Init and start a client node
 
 DATA_DIR=/root/.ethereum
 
@@ -10,7 +12,7 @@ fi
 
 # Copy static-nodes.json
 echo "Copying static-nodes.json"
-cp /root/static-nodes.json /root/.ethereum/geth
+cp /root/static-nodes.json "$DATA_DIR/geth"
 
 echo "Node initialization finished!"
 
