@@ -19,8 +19,8 @@ ENV BOOTNODES=$BOOTNODES
 ENV CHAIN_ID=$CHAIN_ID
 
 # Run start script
-COPY ./node-client/start-client-docker.sh /usr/local/bin
-ENTRYPOINT ["start-client-docker.sh"]
+COPY ./node-client/client-docker.sh /usr/local/bin
+ENTRYPOINT ["client-docker.sh"]
 
 # Expose ports
 ARG EXPOSED_PORTS
