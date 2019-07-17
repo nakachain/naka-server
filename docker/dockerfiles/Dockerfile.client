@@ -13,10 +13,10 @@ COPY ./docker/scripts/init.sh /usr/local/bin
 RUN init-genesis.sh
 
 # Create env vars for shell script
-ARG BOOTNODES
 ARG CHAIN_ID
-ENV BOOTNODES=$BOOTNODES
+ARG BOOTNODES
 ENV CHAIN_ID=$CHAIN_ID
+ENV BOOTNODES=$BOOTNODES
 
 # Expose ports
 ARG EXPOSED_PORTS
