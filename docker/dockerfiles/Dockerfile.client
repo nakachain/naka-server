@@ -14,7 +14,7 @@ COPY ${STATIC_NODES_PATH} /root
 
 # Run init script
 COPY ./docker/scripts/init.sh /usr/local/bin
-RUN init-genesis.sh
+RUN init.sh
 
 # Create env vars for shell script
 ARG CHAIN_ID
