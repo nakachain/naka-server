@@ -23,5 +23,4 @@ ENV CHAIN_ID=$CHAIN_ID \
 
 # Copy init script
 COPY ./docker/scripts/start-client.sh /usr/local/bin
-
 ENTRYPOINT start-client.sh
