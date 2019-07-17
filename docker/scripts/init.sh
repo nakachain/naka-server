@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-DIRECTORY=/root/.naka/geth
+DATA_DIR=/root/.ethereum
 
-if [ ! -d "$DIRECTORY" ]; then
-    echo "Datadir not found, exec geth init"
-    geth --datadir /root/.naka init /root/.naka/genesis.json
+# Init genesis block
+if [ ! -d "$DATA_DIR/geth/chaindata" ]; then
+    echo "Init genesis block..."
+    geth init /root/genesis.json
 fi
