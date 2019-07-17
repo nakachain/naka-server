@@ -2,11 +2,15 @@
 
 DATA_DIR=/root/.ethereum
 
-# Init genesis block
+# Init genesis block and data dir
 if [ ! -d "$DATA_DIR/geth/chaindata" ]; then
     echo "Init genesis block..."
     geth init /root/genesis.json
 fi
+
+# Copy static-nodes.json
+echo "Copying static-nodes.json"
+cp /root/static-nodes.json /root/.ethereum/geth
 
 echo "Node initialization finished!"
 
