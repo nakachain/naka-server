@@ -1,5 +1,9 @@
 FROM nakachain/go-naka:v1.5.0
 
+# Expose ports
+ARG EXPOSED_PORTS
+EXPOSE $EXPOSED_PORTS
+
 # Copy genesis.json
 ARG GENESIS_PATH
 COPY ${GENESIS_PATH} /root
@@ -15,12 +19,14 @@ RUN init-genesis.sh
 # Create env vars for shell script
 ARG CHAIN_ID
 ARG BOOTNODES
-ENV CHAIN_ID=$CHAIN_ID
-ENV BOOTNODES=$BOOTNODES
-
-# Expose ports
-ARG EXPOSED_PORTS
-EXPOSE $EXPOSED_PORTS
+ARG LISTEN_PORT
+ARG RPC_PORT
+ARG WS_PORT
+ENV CHAIN_ID=$CHAIN_ID \
+    BOOTNODES=$BOOTNODES \
+    LISTEN_PORT=$LISTEN_PORT \
+    RPC_PORT=$RPC_PORT \
+    WS_PORT=$WS_PORT
 
 ENTRYPOINT geth \
 --syncmode full \

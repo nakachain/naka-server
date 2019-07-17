@@ -12,6 +12,9 @@ services:
         EXPOSED_PORTS: "9545 9546 40303"
         CHAIN_ID: ${CHAIN_ID}
         BOOTNODES: ${BOOTNODES}
+        LISTEN_PORT: ${LISTEN_PORT}
+        RPC_PORT: ${RPC_PORT}
+        WS_PORT: ${WS_PORT}
     deploy:
       mode: global
       restart_policy:
