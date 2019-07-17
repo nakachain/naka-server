@@ -1,4 +1,4 @@
-FROM nakachain/go-naka:v1.4.1
+FROM nakachain/go-naka:v1.5.0
 
 # Copy static-nodes.json
 ARG STATIC_NODE_PATH
