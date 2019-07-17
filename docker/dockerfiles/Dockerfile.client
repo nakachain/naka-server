@@ -1,12 +1,12 @@
 FROM nakachain/go-naka:v1.5.0
 
-# Copy static-nodes.json
-ARG STATIC_NODE_PATH
-COPY ${STATIC_NODE_PATH} /root/.naka/geth
-
 # Copy genesis.json
 ARG GENESIS_PATH
-COPY ${GENESIS_PATH} /root/.naka/
+COPY ${GENESIS_PATH} /root
+
+# Copy static-nodes.json
+ARG STATIC_NODES_PATH
+COPY ${STATIC_NODES_PATH} /root
 
 # Run init genesis script
 COPY ./script/init-genesis.sh /usr/local/bin
@@ -25,19 +25,19 @@ EXPOSE $EXPOSED_PORTS
 ENTRYPOINT geth \
 --syncmode full \
 --gcmode archive \
---networkid "$CHAIN_ID" \
+--networkid "${CHAIN_ID}" \
 --nat=none \
 --targetgaslimit 4700000 \
---port "$LISTEN_PORT" \
+--port "${LISTEN_PORT}" \
 --rpc \
 --rpcaddr 0.0.0.0 \
---rpcport "$RPC_PORT" \
+--rpcport "${RPC_PORT}" \
 --rpccorsdomain "*" \
 --rpcapi db,debug,eth,net,web3 \
 --ws \
 --wsaddr 0.0.0.0 \
---wsport "$WS_PORT" \
+--wsport "${WS_PORT}" \
 --wsorigins "*" \
 --wsapi db,debug,eth,net,web3 \
 --verbosity 4 \
---bootnodes "$BOOTNODES"
+--bootnodes "${BOOTNODES}"
