@@ -9,12 +9,12 @@ services:
       args:
         GENESIS_PATH: ./metadata/testnet/genesis.json
         STATIC_NODES_PATH: ./metadata/testnet/static-nodes.json
-        EXPOSED_PORTS: "8545 8546 30303"
-        CHAIN_ID: ${CHAIN_ID}
-        BOOTNODES: ${BOOTNODES}
-        LISTEN_PORT: ${LISTEN_PORT}
-        RPC_PORT: ${RPC_PORT}
-        WS_PORT: ${WS_PORT}
+        EXPOSED_PORTS: "9545 9546 40303"
+        CHAIN_ID: "2018"
+        BOOTNODES: "enode://64b6b3687e748673f192c4967719677ef90e67083435364a85e714e870d343b93ebe8561cdff9d347db86af12aee490f9a2b012e4b80dc31e767b871fe6b7ea5@52.197.11.72:40301,enode://91e79afcbe2831689ee334ae264b0f4ae0c53b8918af56bee134d02458fa8bfc14a0f52e8452ee21065c44431cf72c36a403883dddac4d33c34eaa9e6421099c@52.9.128.68:40301"
+        LISTEN_PORT: "30303"
+        RPC_PORT: "8545"
+        WS_PORT: "8546"
     deploy:
       mode: global
       restart_policy:
@@ -23,9 +23,9 @@ services:
         parallelism: 1
         failure_action: rollback
     ports:
-      - 8545:8545
-      - 8546:8546
-      - 30303:30303
+      - 9545:8545
+      - 9546:8546
+      - 40303:30303
     volumes:
       - /home/ubuntu/.naka/testnet:/root/.ethereum
     logging:
