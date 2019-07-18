@@ -27,7 +27,7 @@ services:
       - 9546:8546
       - 40303:30303
     volumes:
-      - ${HOST_DATA_DIR}:/root/.ethereum
+      - /home/ubuntu/.naka/testnet:/root/.ethereum
     logging:
       driver: json-file
       options:
