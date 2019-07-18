@@ -21,6 +21,9 @@ ENV CHAIN_ID=$CHAIN_ID \
     RPC_PORT=$RPC_PORT \
     WS_PORT=$WS_PORT
 
+# Healthcheck
+HEALTHCHECK CMD curl -f "http://localhost:$LISTEN_PORT" || exit 1
+
 # Copy init script
 COPY ./docker/scripts/start-client.sh /usr/local/bin
 ENTRYPOINT start-client.sh
