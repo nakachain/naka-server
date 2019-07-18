@@ -23,7 +23,7 @@
 ## Add Worker Node
 
 1. SSH into server
-2. Create the `linked volume` directory in the server, e.g. `mkdir -p /home/ubuntu/.naka/mainnet`. You will need to do this since adding the worker to the swarm won't create the linked volume directory.
+2. Create the directory `/home/ubuntu/.naka` on the server. You will need to do this because Docker can't create the directory for a linked volume (e.g. `/home/ubuntu/.naka/testnet`) if the root directory (`/.naka`) does not exist.
 3. [Join Docker swarm](https://docs.docker.com/engine/swarm/join-nodes/): `docker swarm join --token SWMTKN-1-3cf4jekd8kfir02lzwi0r3c3tcfbkihvl7ypzv7vle5r4zd32d-29ml6w4pyfwyzone3c09ivq2b 172.31.23.91:2377`
 
 ## Update Stack
