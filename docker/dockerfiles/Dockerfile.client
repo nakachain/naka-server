@@ -1,0 +1,20 @@
+FROM nakachain/go-naka:v1.5.0
+
+# Expose ports
+ARG EXPOSED_PORTS
+EXPOSE $EXPOSED_PORTS
+
+# Copy metadata to root
+ARG GENESIS_PATH
+ARG STATIC_NODES_PATH
+COPY ${GENESIS_PATH} ${STATIC_NODES_PATH} /root/
+
+# Create env vars for shell script
+ARG CHAIN_ID
+ARG BOOTNODES
+ENV CHAIN_ID=$CHAIN_ID \
+    BOOTNODES=$BOOTNODES
+
+# Copy init script
+COPY ./docker/scripts/start-client.sh /usr/local/bin
+ENTRYPOINT start-client.sh
