@@ -12,14 +12,8 @@ COPY ${GENESIS_PATH} ${STATIC_NODES_PATH} /root/
 # Create env vars for shell script
 ARG CHAIN_ID
 ARG BOOTNODES
-ARG LISTEN_PORT
-ARG RPC_PORT
-ARG WS_PORT
 ENV CHAIN_ID=$CHAIN_ID \
-    BOOTNODES=$BOOTNODES \
-    LISTEN_PORT=$LISTEN_PORT \
-    RPC_PORT=$RPC_PORT \
-    WS_PORT=$WS_PORT
+    BOOTNODES=$BOOTNODES
 
 # Healthcheck on listening port
 # HEALTHCHECK CMD curl -f "http://localhost:30303" || exit 1
