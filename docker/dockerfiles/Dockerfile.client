@@ -16,7 +16,7 @@ ENV CHAIN_ID=$CHAIN_ID \
     BOOTNODES=$BOOTNODES
 
 # Healthcheck on listening port
-# HEALTHCHECK CMD curl -f "http://localhost:30303" || exit 1
+HEALTHCHECK CMD curl -f "http://localhost:8545" || exit 1
 
 # Copy init script
 COPY ./docker/scripts/start-client.sh /usr/local/bin
