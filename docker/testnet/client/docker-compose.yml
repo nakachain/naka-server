@@ -9,7 +9,7 @@ services:
       args:
         GENESIS_PATH: ./metadata/testnet/genesis.json
         STATIC_NODES_PATH: ./metadata/testnet/static-nodes.json
-        EXPOSED_PORTS: "9545 9546 40303"
+        EXPOSED_PORTS: "8545 8546 30303"
         CHAIN_ID: ${CHAIN_ID}
         BOOTNODES: ${BOOTNODES}
         LISTEN_PORT: ${LISTEN_PORT}
@@ -23,9 +23,9 @@ services:
         parallelism: 1
         failure_action: rollback
     ports:
-      - 9545:8545
-      - 9546:8546
-      - 40303:30303
+      - 8545:8545
+      - 8546:8546
+      - 30303:30303
     volumes:
       - /home/ubuntu/.naka/testnet:/root/.ethereum
     logging:
