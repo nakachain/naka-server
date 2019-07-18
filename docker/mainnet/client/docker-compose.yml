@@ -3,18 +3,6 @@ version: '3.7'
 services:
   client-mainnet:
     image: nakachain/client-mainnet:v1.5.0
-    build:
-      context: ../../../
-      dockerfile: ./docker/dockerfiles/Dockerfile.client
-      args:
-        GENESIS_PATH: ./metadata/mainnet/genesis.json
-        STATIC_NODES_PATH: ./metadata/mainnet/static-nodes.json
-        EXPOSED_PORTS: "8545 8546 30303"
-        CHAIN_ID: ${CHAIN_ID}
-        BOOTNODES: ${BOOTNODES}
-        LISTEN_PORT: ${LISTEN_PORT}
-        RPC_PORT: ${RPC_PORT}
-        WS_PORT: ${WS_PORT}
     deploy:
       mode: global
       restart_policy:
@@ -27,7 +15,7 @@ services:
       - 8546:8546
       - 30303:30303
     volumes:
-      - ${HOST_DATA_DIR}:/root/.ethereum
+      - /home/ubuntu/.naka/mainnet:/root/.ethereum
     logging:
       driver: json-file
       options:
